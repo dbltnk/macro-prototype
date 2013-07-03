@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="World Map" tilewidth="32" tileheight="32">
+  <image source="Inq XP WM - World Map.png" width="256" height="16448"/>
+ </tileset>
+ <tileset firstgid="4113" name="Customization" tilewidth="32" tileheight="32">
+  <image source="Inq XP WM - Customization.png" width="192" height="1760"/>
+ </tileset>
+ <tileset firstgid="4443" name="Desert" tilewidth="32" tileheight="32">
+  <image source="Inq XP WM - Desert.png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="4455" name="Mountains (meu)" tilewidth="32" tileheight="32">
+  <image source="Inq XP WM - Mountains (meu).png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="4467" name="Trees (meu)" tilewidth="32" tileheight="32">
+  <image source="Inq XP WM - Trees (meu).png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="4479" name="Trees Opening (meu)" tilewidth="32" tileheight="32">
+  <image source="Inq XP WM - Trees Opening (meu).png" width="96" height="128"/>
+ </tileset>
+ <tileset firstgid="4491" name="Medium Water" tilewidth="32" tileheight="32">
+  <image source="Inq XP WM - Medium Water.png" width="384" height="128"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+</map>

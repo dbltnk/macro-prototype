@@ -21,6 +21,18 @@
  <tileset firstgid="4491" name="Medium Water" tilewidth="32" tileheight="32">
   <image source="Inq XP WM - Medium Water.png" width="384" height="128"/>
  </tileset>
+ <tileset firstgid="4539" name="worldmap_1" tilewidth="32" tileheight="32">
+  <image source="worldmap_1.png" width="256" height="4096"/>
+ </tileset>
+ <tileset firstgid="5563" name="worldmap_2" tilewidth="32" tileheight="32">
+  <image source="worldmap_2.png" width="256" height="4096"/>
+ </tileset>
+ <tileset firstgid="6587" name="worldmap_3" tilewidth="32" tileheight="32">
+  <image source="worldmap_3.png" width="256" height="4096"/>
+ </tileset>
+ <tileset firstgid="7611" name="worldmap_4" tilewidth="32" tileheight="32">
+  <image source="worldmap_4.png" width="256" height="4096"/>
+ </tileset>
  <layer name="ground" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJztzTkBwCAQADAsYJCvBf8SOBXckiFzWi2lJxlhhpXk8/v9fr/f7/f7/X6//9H/h53khAtcAswQ

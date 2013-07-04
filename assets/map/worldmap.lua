@@ -98,6 +98,58 @@ return {
       imageheight = 128,
       properties = {},
       tiles = {}
+    },
+    {
+      name = "worldmap_1",
+      firstgid = 4539,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "worldmap_1.png",
+      imagewidth = 256,
+      imageheight = 4096,
+      properties = {},
+      tiles = {}
+    },
+    {
+      name = "worldmap_2",
+      firstgid = 5563,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "worldmap_2.png",
+      imagewidth = 256,
+      imageheight = 4096,
+      properties = {},
+      tiles = {}
+    },
+    {
+      name = "worldmap_3",
+      firstgid = 6587,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "worldmap_3.png",
+      imagewidth = 256,
+      imageheight = 4096,
+      properties = {},
+      tiles = {}
+    },
+    {
+      name = "worldmap_4",
+      firstgid = 7611,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      image = "worldmap_4.png",
+      imagewidth = 256,
+      imageheight = 4096,
+      properties = {},
+      tiles = {}
     }
   },
   layers = {

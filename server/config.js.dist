@@ -1,0 +1,6 @@
+
+this.adminPassword = "lala";
+
+this.accounts = {
+	// name: "key",
+};

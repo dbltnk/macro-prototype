@@ -6,7 +6,7 @@ localconfig.is_bot = false
 
 
 -- ### Step 1: Set up your screen resolution. ###
-localconfig.fullscreen = false -- Set this to "true" for fullscreen.
+localconfig.fullscreen = true -- Set this to "true" for fullscreen.
 localconfig.screenWidth = 1024 -- Choose your screen width in pixels.
 localconfig.screenHeight = 1024 -- Choose your screen height in pixels.
 

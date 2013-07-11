@@ -38,44 +38,46 @@
    eJztzTkBwCAQADAsYJCvBf8SOBXckiFzWi2lJxlhhpXk8/v9fr/f7/f7/X6//9H/h53khAtcAswQ
   </data>
  </layer>
- <layer name="water" width="32" height="32">
+ <layer name="impassable" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJztzcENABAUBNFt4VePM87o0HbxReYlcx4JAAAAeEMJqboWOf/u73Az6b/83e4k/QH87QLycQZe
-  </data>
- </layer>
- <layer name="roads" width="32" height="32">
-  <data encoding="base64" compression="zlib">
-   eJztVskKwjAUzAe0n+1ycbm4XLSC+1pBT1U8uIPrd/gVTsFCKE1sTWIUMjCUvJDOy8vrNIQYGBgY/A/6FiGeTUgGzNr68ihAu/hGf2Wp069Au8rRdzDXEKjPBmu34I7zjhrm6oz5LuI9Af0T1p7BC+es24h1QvEUxmnQBaeS+oN11mPEJqH8cnjmJfelf9a8WtP5lfAsK/guompN5+f3omjP8RDU2otgE2zZ4j33KYbQHEnuOR5m0JhT+398ec8L6C1fmo6Geg80+v6v6Mv2mKT6Kjwmib5OxNFX6YUsfdqjVXohSz/w6LViL2TdTfYYH8Cj4v6g7yb0f+gK3sC75v6MiyeI+E5J
-  </data>
- </layer>
- <layer name="walls" width="32" height="32">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFgwU08jAwNBGJW3iob38nCWb2DHL7sYUloTCjpv3YzCJHz2C1v32A7e8f4eFPyKyJQPnJQNwHpUF4CpF6YHgSGn8yCWaNglEwCkYOQK5vm9HqXRifFm0WGCCm7KRFm2XU/lH7B4P9E3HU2ZNG6+xRgAcAANvINzw=
+   eJzLE2RgyAPiQjrjPCRcBMTUBq9F8MsXQO3Op4HdxNgPArmj9tPM/s9A+58RcAMt7QeBd6P2E2X/VxHc2EmU9vbTCox0+6MIxB2t7ScEyLXfUZQ6aXSo+n/U/oG3nxppcCj7f9T+wWW/F570h55WYZia9gcNcPoftX9o2p8JxDlUcAOp9mdB+5+ZUJxNZwzrewMAQiJjXA==
   </data>
  </layer>
  <layer name="cities" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJzt1TdTVVEYBdArIPE9USQaEAyoSPrDqI2hUWwEGoeogiBBQJJEE+ZAEAWF5YyNHafwDjPePbPmNft8u7svipIk+TtdqSjqpode7vOAh/Sl/v1+v41HDDDIY4YYZiSG/VEbTxhjnAmeMslUwH6z7mWucDXg3bTuDLM8Y455FlgMuHNN9zo3uBnwbkl3mee84CWveM1KwJ1burdp4U7Auze6b3nHez7wkU98DrhzV7eVNtoD3n3R/coqa6yzwTc2A+7c+9Pt8NsZ8O677g+22OYnv9j5fSO99ztJkiRJ8r/kgG9jBplkcZBscsiN4buZZyOfAlKkOUQhh2PYP2KjiKMUU0IpZZTHsF9h4xjHOcFJKjlFVQz71TZOc4aznKOG81yIYf+ijVouUUc9DTTSlPxvJ9mH2QWXHU7y
-  </data>
- </layer>
- <layer name="mountains" width="32" height="32">
-  <data encoding="base64" compression="zlib">
-   eJzt1zkOACAIBVGv4DHdcLl/IQUkngCb+cnUjxbJKYm2g5Ono0VvmT0/2L6Bj4+Pj4+Pj4+Pj4+PH+YXrX+4odr/WawWnP/eFxYqP3I=
+   eJztlLkNgDAUxf4kWY2j4Wg4GgLT4xmQICKyJddunl6E/JUmRbTYYZ++7w80R5xwLtBfaK644V6gf9DMeOJVoC9SE/6Zf1Yj7tpdP8HduBuRN7kBmDAioQ==
   </data>
  </layer>
  <layer name="camps" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJzt1jEOgDAMBEF/IZ8lEAhv5xq3yE10QuxIrq9bOQJft7WIrtubZ//Q7tCdpv1Lu1N3m/YB4E210ataXm30qpZXG03LAThke7vpn872DtM/ne2dNPg3HuAeFs8=
-  </data>
- </layer>
- <layer name="oasis" width="32" height="32">
-  <data encoding="base64" compression="zlib">
-   eJztzbcNgAAUA1EPwGKkglSAoCAVpP1brmAFfuUnnVxaMjMzMzOT0kTKKKeCyiT2v+KvpoZa6oL/e/6G73Nkp+D/mb+FVtpoD/4/+Dvpopue4H8z+98LW8oJqQ==
+   eJzt1MEJACAIQFEXcf+Z6laT1AaKIiT9dxbx8EsEPxgqMjU/E7Xu3m3s9szgP5VdetBlD1Yn1R1ZndARsvgLgbd1faNd70bcAYMcH1E=
   </data>
  </layer>
  <layer name="ressources" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJxjYBj+oE9gYO2fMsD2j4JRQA8Qzjuw9scPsP3pA2z/KBgFtAI1ZNRh1CwPmsiwn5rlQQcZ9g+18iB7gN1bPMTCaxSQB0bT2dAEo/E2/AAArVwIaQ==
+   eJxjYBgFowA/EJUfWPtlB9j+UUAZoFX60SbSXFqlH+MBSJeSA5wXFAfYfs3RsgAOvskxMHwH4h9yuNUQm0fIAf+A9v4H2Y3HDlrmETag2exAzDGI0gQt8icpcUiL/ElKHFKSP0fbGaOAVEDL8o0YQEreGE3fo2CwAQBpvQu6
   </data>
  </layer>
+ <objectgroup name="objects" width="32" height="32">
+  <object name="spawnpoint" x="923" y="55" width="25" height="27">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </object>
+  <object name="spawnpoint" x="926" y="945" width="25" height="27">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </object>
+  <object name="spawnpoint" x="56" y="931" width="25" height="27">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </object>
+  <object name="spawnpoint" x="84" y="65" width="25" height="27">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

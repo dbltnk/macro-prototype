@@ -104,8 +104,6 @@ GameView = View:extend
 		if is_server then
 			PhaseManager:new{}
 		end
-
-                local c = Character:new{}
 		
 		--~ self.collision.visible = false
 		--~ self.collision.static = true
@@ -276,7 +274,9 @@ GameView = View:extend
 			name = localconfig.playerName, pass = localconfig.accountPassword, }, function(fin, result)			
 		end)
 
-		self.testChar = Character:new{x= 600,y = 600}
+		self.testChar1 = Character:new{x= 600,y = 600}
+		self.testChar2 = Character:new{x= 400,y = 600}
+		self.testChar3 = Character:new{x= 600,y = 500}				
     end,
 
     onUpdate = function (self, elapsed)
@@ -306,6 +306,9 @@ GameView = View:extend
 			--~ self.landscape:subdisplace(the.player)
 			--~ self.water:subdisplace(the.player)
 		--~ end
+		for character,_ in pairs(the.characters) do
+			self.impassable:subdisplace(character)		
+		end		
 		--~ 
 		--~ profile.stop()
 		--~ 

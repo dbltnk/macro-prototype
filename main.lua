@@ -111,7 +111,7 @@ require 'ConnectView'
 --~ require 'EffectCircle'
 --~ require 'EffectImage'
 --~ require 'Arrow'
---~ require 'ui' 
+require 'ui' 
 require 'loveframes'
 require 'Character'
 

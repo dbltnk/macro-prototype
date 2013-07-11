@@ -307,7 +307,7 @@ GameView = View:extend
 			--~ self.water:subdisplace(the.player)
 		--~ end
 		for character,_ in pairs(the.characters) do
-			self.impassable:subdisplace(character)		
+			self.impassable:subdisplace(character)	
 		end		
 		--~ 
 		--~ profile.stop()

@@ -3,14 +3,22 @@ local config = {}
 
 -- macro prototype
 config.charSpeed = 100
- 
+config.healthReg = 10
+config.combatDMG = 10
+
+
+
+
+
+
+
 -- combat balancing
 config.walkspeed = 200
 config.runspeed = 250
 config.animspeed = 4 * config.walkspeed / 50
 config.projectilespeed = 500
 config.energyreg = 8
-config.healthreg = 8 -- 50% of that when incapacitated
+--~ config.healthreg = 8 -- 50% of that when incapacitated
 config.maxPain = 300
 config.maxEnergy = 300
 config.getUpPain = 0.5 -- in percent

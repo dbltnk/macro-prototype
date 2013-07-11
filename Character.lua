@@ -4,8 +4,8 @@ Character = Tile:extend
 {
 	class = "Character",
 
-	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentHealth", "maxHealth", "morale", "currentAP", "maxAP", "playTimePreferences"},
-	sync_high = {"x", "y", "currentHealth", "maxHealth"},
+	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "morale", "currentAP", "maxAP", "playTimePreferences"},
+	sync_high = {"x", "y", "currentPain", "maxPain"},
 	sync_low = {"XPLevel", "equipLevel"},
 	
 	image = "assets/graphics/player.png",
@@ -13,8 +13,8 @@ Character = Tile:extend
 	skillLevel = 1,
 	XPLevel = 1,
 	equipLevel = 1,
-	currentHealth = 100,
-	maxHealth = 100,
+	currentPain = 0,
+	maxPain = 100,
 	morale = 100,
 	currentAP = 10,
 	maxAP = 10,
@@ -25,6 +25,7 @@ Character = Tile:extend
 	selected = false,
 	targetX = 0, 
 	targetY = 0, 
+	pain_bar_size = 32,	
         
 	onNew = function (self)
 		self:mixin(GameObject)
@@ -34,6 +35,12 @@ Character = Tile:extend
         self:updateSelection()
         self.targetX = self.x
 		self.targetY = self.y
+		self.painBar = UiBar:new{
+			x = self.x, y = self.y, 
+			dx = 0, dy = self.height,
+			currentValue = self.currentPain, maxValue = self.maxPain, inc = false,
+			width = self.pain_bar_size,
+		}
 	end,
 	
 	move = function (self, elapsed)
@@ -47,36 +54,52 @@ Character = Tile:extend
 	end,
 	
 	onUpdateLocal = function (self, elapsed)
+		self.elapsed = elapsed
 		if self.morale < 100 then self.morale = self.morale + 0.001 * elapsed end
 		if self.morale < 20 and self.ingame then self:logout() end
 		self:move(elapsed)
+        self:collide(the.app.view.layers.characters)
+        if self.currentPain >= self.maxPain then
+			self:incapacitate()
+        end		
+        if self.currentPain < self.maxPain then
+			self.currentPain = self.currentPain - config.healthReg * elapsed
+        end
+		self.currentPain = utils.clamp(self.currentPain, 0, self.maxPain) 
 	end,
 	
 	onUpdateBoth = function (self)
-
+		self.painBar.currentValue = self.currentPain
+		self.painBar.maxValue = self.maxPain
+		self.painBar.bar.alpha = self.alpha
+		self.painBar.background.alpha = self.alpha
+		--~ self.painBar.width = self.pain_bar_size * self.maxPainOverdrive
+		self.painBar:updateBar()
+		self.painBar.x = self.x - self.width / 2
+		self.painBar.y = self.y + 5
 	end,
 
-        updateSelection = function (self)
-            if self.selected then self.image = "assets/graphics/player.png"
-            else self.image = "assets/graphics/character.png" end
-        end,
-        
-        clicked = function (self)
-            self.selected = not self.selected
-            self:updateSelection()
-        end,
+       updateSelection = function (self)
+           if self.selected then self.image = "assets/graphics/player.png"
+           else self.image = "assets/graphics/character.png" end
+       end,
+       
+       clicked = function (self)
+          self.selected = not self.selected
+           self:updateSelection()
+       end,
 
-        unclicked = function (self)
-            self.selected = false
-            self:updateSelection()
-        end,
+       unclicked = function (self)
+           self.selected = false
+           self:updateSelection()
+       end,
 
-        clickAction = function (self, mx, my)
-            if self.selected then
-                self.targetX = mx
-                self.targetY = my
-            end
-        end,
+       clickAction = function (self, mx, my)
+           if self.selected then
+               self.targetX = mx
+               self.targetY = my
+           end
+       end,
 	
 	login = function (self)
 		if self.morale > 0 then
@@ -92,6 +115,14 @@ Character = Tile:extend
 		self.solid = false
 		self.x, self.y = -9999, -9999
 		self.ingame = false
+	end,
+	
+	onCollide = function (self, other, xOverlap, yOverlap)
+		if other.class == "Character" then
+			self.currentPain = self.currentPain + config.combatDMG * self.elapsed * (other.skillLevel + other.XPLevel + other.equipLevel)
+		else
+
+		end
 	end,
 	
 	receiveLocal = function (self, message_name, ...)
@@ -114,7 +145,9 @@ Character = Tile:extend
 	
 	incapacitate = function (self)
 		self.visible = false
-		self.solid = false		
+		self.solid = false	
+		self:unclicked()	
+		--~ self.targetX, self.targetY = self.x, self.y		
 		if self.killedByPlayer then
 			self.ganked = true
 			self.killedByPlayer = false
@@ -129,15 +162,16 @@ Character = Tile:extend
 		self.solid = true
 		if self.ganked then 
 			self.x, self.y = self.spawnpoint
-			self.currentHealth = self.maxHealth
+			self.currentPain = 0
 		else
-			self.currentHealth = self.maxHealth / 2
+			self.currentPain = self.maxPain / 2
 		end
 			
 	end,
 		
-	onDie = function (self)
+	onDieBoth = function (self)
 		the.characters[self] = nil		
 		the.app.view.layers.characters:remove(self)	
+		self.painBar:die()		
 	end,
 }

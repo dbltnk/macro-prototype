@@ -23,18 +23,33 @@ Character = Tile:extend
 	ganked = false,
 	ingame = false,
 	selected = false,
+	targetX = 0, 
+	targetY = 0, 
         
 	onNew = function (self)
 		self:mixin(GameObject)
 		the.app.view.layers.characters:add(self)	
 		object_manager.create(self)
 		the.characters[self] = true
-                self:updateSelection()
+        self:updateSelection()
+        self.targetX = self.x
+		self.targetY = self.y
+	end,
+	
+	move = function (self, elapsed)
+		local cx,cy = tools.object_center(self)
+		local dx,dy = vector.fromToWithLen(cx,cy, self.targetX,self.targetY, config.charSpeed * elapsed)
+		if math.floor(cx) ~= math.floor(self.targetX) then
+			if math.floor(cy) ~= math.floor(self.targetY) then
+				self.x, self.y = vector.add(self.x, self.y, dx,dy) 
+			end
+		end
 	end,
 	
 	onUpdateLocal = function (self, elapsed)
 		if self.morale < 100 then self.morale = self.morale + 0.001 * elapsed end
 		if self.morale < 20 and self.ingame then self:logout() end
+		self:move(elapsed)
 	end,
 	
 	onUpdateBoth = function (self)
@@ -58,8 +73,8 @@ Character = Tile:extend
 
         clickAction = function (self, mx, my)
             if self.selected then
-                self.x = mx
-                self.y = my
+                self.targetX = mx
+                self.targetY = my
             end
         end,
 	

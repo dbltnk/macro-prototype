@@ -1,5 +1,8 @@
 
 local config = {}
+
+-- macro prototype
+config.charSpeed = 100
  
 -- combat balancing
 config.walkspeed = 200

@@ -91,7 +91,28 @@ GameObject = {
 		end
 		
 		if self.onUpdateBoth then self:onUpdateBoth(...) end
-		
+	
+                -- clicked?
+                if self.visible and self.alpha > 0 then
+                    local mx,my = the.mouse.x * inputScale, the.mouse.y * inputScale
+                    if the.mouse:justPressed("l") then
+                        if 
+                            self.x < mx and mx < self.x + self.width and
+                            self.y < my and my < self.y + self.height 
+                        then
+                            print("CLICKED", self.x, self.y, self.oid, mx, my)
+                            if self.clicked then self:clicked(mx,my) end
+                        else
+                            print("UNCLICKED", self.x, self.y, self.oid, mx, my)
+                            if self.unclicked then self:unclicked(mx,my) end
+                        end
+                    end
+                    if the.mouse:justPressed("r") then
+                        print("ACTIONCLICKED", self.x, self.y, self.oid, mx, my)
+                        if self.clickAction then self:clickAction(mx,my) end
+                    end
+                end
+                
 		self:calculateOwnZone()
 	end,
 	

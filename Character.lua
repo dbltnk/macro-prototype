@@ -8,7 +8,7 @@ Character = Tile:extend
 	sync_high = {"x", "y", "currentHealth", "maxHealth"},
 	sync_low = {"XPLevel", "equipLevel"},
 	
-	image = "assets/graphics/character.png",
+	image = "assets/graphics/player.png",
 	
 	skillLevel = 1,
 	XPLevel = 1,
@@ -22,12 +22,14 @@ Character = Tile:extend
 	killedByPlayer = false,
 	ganked = false,
 	ingame = false,
-	
+	selected = false,
+        
 	onNew = function (self)
 		self:mixin(GameObject)
 		the.app.view.layers.characters:add(self)	
 		object_manager.create(self)
 		the.characters[self] = true
+                self:updateSelection()
 	end,
 	
 	onUpdateLocal = function (self, elapsed)
@@ -38,6 +40,28 @@ Character = Tile:extend
 	onUpdateBoth = function (self)
 
 	end,
+
+        updateSelection = function (self)
+            if self.selected then self.image = "assets/graphics/player.png"
+            else self.image = "assets/graphics/character.png" end
+        end,
+        
+        clicked = function (self)
+            self.selected = not self.selected
+            self:updateSelection()
+        end,
+
+        unclicked = function (self)
+            self.selected = false
+            self:updateSelection()
+        end,
+
+        clickAction = function (self, mx, my)
+            if self.selected then
+                self.x = mx
+                self.y = my
+            end
+        end,
 	
 	login = function (self)
 		if self.morale > 0 then

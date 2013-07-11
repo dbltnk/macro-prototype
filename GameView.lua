@@ -81,13 +81,16 @@ GameView = View:extend
 		print("the.app.view", the.app.view)
     
 		-- object -> true map for easy remove, key contains projectile references
-		the.projectiles = {}
+		--~ the.projectiles = {}
 		
 		-- object -> true map for easy remove, key contains targetDummy references
-		the.targetDummies = {}
+		--~ the.targetDummies = {}
 		
 		-- object -> true map for easy remove, key contains footstep references
-		the.footsteps = {}
+		--~ the.footsteps = {}
+		
+		-- object -> true map for easy remove, key contains footstep references
+		the.characters = {}		
 				
 		local mapFile = '/assets/map/worldmap.lua'
 		self:loadLayers(mapFile, true, {objects = true, })
@@ -106,24 +109,14 @@ GameView = View:extend
 		--~ self.collision.static = true
 		
 		-- specify render order
-		--~ self:add(self.layers.management)
-		
-		--~ self:add(self.layers.ground)		
-		--~ self:add(self.layers.water)
-		--~ self:add(self.layers.roads)
-		--~ self:add(self.layers.walls)
-		--~ self:add(self.layers.citites)
-		--~ self:add(self.layers.mountains)
-		--~ self:add(self.layers.camps)
-		--~ self:add(self.layers.oasis)
-		--~ self:add(self.layers.ressources)
-		
-		--~ self:add(self.layers.particles)
-		--~ self:add(self.layers.characters)
-		--~ self:add(self.layers.projectiles)
-		--~ self:add(self.layers.above)		
-		--~ self:add(self.layers.ui)
-		--~ self:add(self.layers.debug)
+		self:add(self.layers.management)
+		self:add(self.layers.ground)		
+		self:add(self.layers.particles)
+		self:add(self.layers.characters)
+		self:add(self.layers.projectiles)
+		self:add(self.layers.above)		
+		self:add(self.layers.ui)
+		self:add(self.layers.debug)
 		
 		-- setup player
 		--~ the.player = Player:new{ x = the.app.width / 2, y = the.app.height / 2, 
@@ -296,7 +289,7 @@ GameView = View:extend
 		--~ the.frameChatInput:SetFocus(false)
 		--~ the.frameChatInput.OnEnter = function (self, text)
 			--~ if text:len() > 0 then
-				print("CHAT", self.visible, text)
+				--~ print("CHAT", self.visible, text)
 				--~ network.send({channel = "chat", cmd = "text", from = localconfig.playerName, text = text, time = network.time})
 				--~ showChatText(localconfig.playerName, text, network.time)
 			--~ end
@@ -328,6 +321,10 @@ GameView = View:extend
 		--~ for _,v in pairs(self.covers) do
 			--~ self.layers.ui:add(v)
 		--~ end
+		
+
+		self.testChar = Character:new{x= 600,y = 700}
+
     end,
 
     onUpdate = function (self, elapsed)

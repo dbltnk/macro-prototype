@@ -108,6 +108,7 @@ require 'ConnectView'
 --~ require 'Arrow'
 --~ require 'ui' 
 require 'loveframes'
+require 'Character'
 
 -- stats ----------------------------
 gameStats = storage.load("stats.json") or {}
@@ -239,7 +240,7 @@ the.app = App:new
 
     onRun = function (self)
 		-- disable the hardware cursor
-		self:useSysCursor(false)	
+		--~ self:useSysCursor(false)	
 		
 		network.connect(config.server_hostname, config.server_port)
 		

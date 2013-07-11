@@ -266,7 +266,7 @@ NameLevel = Text:extend
 	tint = {0.1,0.1,0.1},
 
 	onUpdate = function (self)
-		self.text = self.skillLevel .. " | " .. self.XPLevel .. " | " .. self.equipLevel
+		self.text = math.floor(self.skillLevel) .. " | " .. math.floor(self.XPLevel) .. " | " .. math.floor(self.equipLevel)
 		--~ self.x = self.x - 20
 		--~ self.y = self.y - 30
 		--~ self:centerAround(self.x,self.y,"horizontal")

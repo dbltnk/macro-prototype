@@ -47,7 +47,8 @@ Character = Tile:extend
 			skillLevel = self.skillLevel, XPLevel = self.XPLevel,
 			equipLevel = self.equipLevel, 
 			width = self.pain_bar_size * 2,
-		}	
+		}
+		drawDebugWrapper(self)
 	end,
 	
 	move = function (self, elapsed)
@@ -66,6 +67,7 @@ Character = Tile:extend
 		--~ if self.morale < 20 and self.ingame then self:logout() end
 		self:move(elapsed)
         self:collide(the.app.view.layers.characters)
+        self:collide(the.camp)
         if self.currentPain >= self.maxPain and not self.dead then
 			self:incapacitate()
         end		
@@ -133,8 +135,8 @@ Character = Tile:extend
 	onCollide = function (self, other, xOverlap, yOverlap)
 		if other.class == "Character" then
 			self.currentPain = self.currentPain + config.combatDMG * self.elapsed * (other.skillLevel + other.XPLevel + other.equipLevel)
-		else
-
+		elseif other.class == "Camp" then
+			self.XPLevel = self.XPLevel + other.level * self.elapsed
 		end
 	end,
 	

@@ -114,6 +114,7 @@ require 'ConnectView'
 require 'ui' 
 require 'loveframes'
 require 'Character'
+require 'Camp'
 
 -- stats ----------------------------
 gameStats = storage.load("stats.json") or {}

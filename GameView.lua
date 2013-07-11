@@ -91,6 +91,7 @@ GameView = View:extend
 		
 		-- object -> true map for easy remove, key contains footstep references
 		the.characters = {}		
+		the.camps = {}
 				
 		local mapFile = '/assets/map/worldmap.lua'
 		self:loadLayers(mapFile, true, {objects = true, })
@@ -99,7 +100,7 @@ GameView = View:extend
 		print("startup", network.is_first, network.connected_client_count)
 
 		self:loadMap(mapFile, function (o) return not (o.name and NetworkSyncedObjects[o.name]) end)
-		
+				
 		-- first client -> setup "new" world
 		if is_server then
 			PhaseManager:new{}
@@ -276,12 +277,13 @@ GameView = View:extend
 
 		self.testChar1 = Character:new{x= 600,y = 600, skillLevel = 3, XPLevel = 2, equipLevel = 2}
 		self.testChar2 = Character:new{x= 400,y = 600, skillLevel = 1, XPLevel = 5, equipLevel = 5}
-		self.testChar3 = Character:new{x= 600,y = 500, skillLevel = 1, XPLevel = 3, equipLevel = 1}				
+		self.testChar3 = Character:new{x= 600,y = 500, skillLevel = 1, XPLevel = 3, equipLevel = 1}	
+		
     end,
 
     onUpdate = function (self, elapsed)
 		--~ -- show debug geometry?
-		--~ self.layers.debug.visible = config.draw_debug_info
+		self.layers.debug.visible = config.draw_debug_info
     --~ 
 		--~ if the.player and the.player.class ~= "Ghost" then
 			--~ profile.start("update.skillbar")

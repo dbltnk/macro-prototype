@@ -48,11 +48,6 @@
    eJztlLkNgDAUxf4kWY2j4Wg4GgLT4xmQICKyJddunl6E/JUmRbTYYZ++7w80R5xwLtBfaK644V6gf9DMeOJVoC9SE/6Zf1Yj7tpdP8HduBuRN7kBmDAioQ==
   </data>
  </layer>
- <layer name="camps" width="32" height="32">
-  <data encoding="base64" compression="zlib">
-   eJzt1MEJACAIQFEXcf+Z6laT1AaKIiT9dxbx8EsEPxgqMjU/E7Xu3m3s9szgP5VdetBlD1Yn1R1ZndARsvgLgbd1faNd70bcAYMcH1E=
-  </data>
- </layer>
  <layer name="ressources" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJxjYBgFowA/EJUfWPtlB9j+UUAZoFX60SbSXFqlH+MBSJeSA5wXFAfYfs3RsgAOvskxMHwH4h9yuNUQm0fIAf+A9v4H2Y3HDlrmETag2exAzDGI0gQt8icpcUiL/ElKHFKSP0fbGaOAVEDL8o0YQEreGE3fo2CwAQBpvQu6
@@ -77,6 +72,54 @@
   <object name="spawnpoint" x="84" y="65" width="25" height="27">
    <properties>
     <property name="" value=""/>
+   </properties>
+  </object>
+  <object name="Camp" x="390" y="612" width="49" height="57">
+   <properties>
+    <property name="_the" value="camp"/>
+    <property name="level" value="1"/>
+   </properties>
+  </object>
+  <object name="Camp" x="103" y="901" width="49" height="57">
+   <properties>
+    <property name="_the" value="camp"/>
+    <property name="level" value="1"/>
+   </properties>
+  </object>
+  <object name="Camp" x="679" y="839" width="49" height="57">
+   <properties>
+    <property name="_the" value="camp"/>
+    <property name="level" value="1"/>
+   </properties>
+  </object>
+  <object name="Camp" x="870" y="420" width="49" height="57">
+   <properties>
+    <property name="_the" value="camp"/>
+    <property name="level" value="1"/>
+   </properties>
+  </object>
+  <object name="Camp" x="615" y="419" width="49" height="57">
+   <properties>
+    <property name="_the" value="camp"/>
+    <property name="level" value="1"/>
+   </properties>
+  </object>
+  <object name="Camp" x="296" y="292" width="49" height="57">
+   <properties>
+    <property name="_the" value="camp"/>
+    <property name="level" value="1"/>
+   </properties>
+  </object>
+  <object name="Camp" x="102" y="133" width="49" height="57">
+   <properties>
+    <property name="_the" value="camp"/>
+    <property name="level" value="1"/>
+   </properties>
+  </object>
+  <object name="Camp" x="838" y="102" width="49" height="57">
+   <properties>
+    <property name="_the" value="camp"/>
+    <property name="level" value="1"/>
    </properties>
   </object>
  </objectgroup>

@@ -104,6 +104,8 @@ GameView = View:extend
 		if is_server then
 			PhaseManager:new{}
 		end
+
+                local c = Character:new{}
 		
 		--~ self.collision.visible = false
 		--~ self.collision.static = true
@@ -274,70 +276,10 @@ GameView = View:extend
 			name = localconfig.playerName, pass = localconfig.accountPassword, }, function(fin, result)			
 		end)
 
-		--~ local chatInfo = Text:new{
-			--~ x = 5, y = love.graphics.getHeight() - 90, width = 500, tint = {0,0,0}, 
-			--~ text = "Press enter to chat",
-		--~ }
-		--~ the.hud:add(chatInfo)
-		
-		
-		-- text chat input
-		--~ the.frameChatInput = loveframes.Create("textinput")
-		--~ the.frameChatInput:SetPos(5, love.graphics.getHeight() - 90)
-		--~ the.frameChatInput:SetWidth(love.graphics.getWidth() - 10)
-		--~ the.frameChatInput:SetVisible(false)
-		--~ the.frameChatInput:SetFocus(false)
-		--~ the.frameChatInput.OnEnter = function (self, text)
-			--~ if text:len() > 0 then
-				--~ print("CHAT", self.visible, text)
-				--~ network.send({channel = "chat", cmd = "text", from = localconfig.playerName, text = text, time = network.time})
-				--~ showChatText(localconfig.playerName, text, network.time)
-			--~ end
-			--~ the.app.view.timer:after(0.1, function() 
-				--~ self:SetVisible(false)
-				--~ self:SetFocus(false)
-				--~ self:SetText("")
-				--~ the.ignorePlayerCharacterInputs = false
-				--~ -- TODO keep focus if one clicks of close on click on screen
-			--~ end)
-		--~ end
---~ 
-		--~ switchToGhost()
-    --~ end,
-    --~ 
-    --~ setFogEnabled = function (self, enabled)
-		--~ if self.fogEnabled ~= enabled then
-			--~ self.fogEnabled = enabled
-			--~ 
-			--~ for _,v in pairs(self.covers) do
-				--~ v.visible = enabled
-			--~ end
-			--~ 
-			--~ self.fogEnabled = enabled
-		--~ end
-	--~ end,
-	--~ 
-	--~ setupFog = function(self)
-		--~ for _,v in pairs(self.covers) do
-			--~ self.layers.ui:add(v)
-		--~ end
-		
-
-		self.testChar = Character:new{x= 600,y = 700}
-
+		self.testChar = Character:new{x= 600,y = 600}
     end,
 
     onUpdate = function (self, elapsed)
-		--~ -- handle chat
-		--~ if the.keys:justPressed("return") then
-			--~ print(the.frameChatInput.visible, the.frameChatInput.focus)
-			--~ if not the.frameChatInput.visible then
-				--~ the.frameChatInput:SetVisible(true)
-				--~ the.frameChatInput:SetFocus(true)
-				--~ the.ignorePlayerCharacterInputs = true
-			--~ end
-		--~ end
-    --~ 
 		--~ -- show debug geometry?
 		--~ self.layers.debug.visible = config.draw_debug_info
     --~ 

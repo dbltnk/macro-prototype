@@ -1,5 +1,5 @@
 function love.conf(t)
-    t.title = "Combat Prototype"        -- The title of the window the game is in (string)
+    t.title = "Macro Prototype"        -- The title of the window the game is in (string)
     t.author = "Cup Of Tea"        -- The author of the game (string)
     t.url = nil                 -- The website of the game (string)
     t.identity = nil            -- The name of the save directory (string)
@@ -20,5 +20,5 @@ function love.conf(t)
     t.modules.timer = true      -- Enable the timer module (boolean)
     t.modules.mouse = true      -- Enable the mouse module (boolean)
     t.modules.sound = true      -- Enable the sound module (boolean)
-    t.modules.physics = true    -- Enable the physics module (boolean)
+    t.modules.physics = false -- Enable the physics module (boolean)
 end

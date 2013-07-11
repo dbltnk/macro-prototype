@@ -98,6 +98,11 @@ require 'MonitorChanges'
 require 'GameView'
 require 'TestView'
 require 'PhaseManager'
+require 'Clan'
+require 'CaptureZone'
+require 'MobZone'
+require 'Character'
+require 'ResourceWell'
 --~ require 'Footstep'
 --~ require 'Barrier'
 --~ require 'Ressource'
@@ -239,8 +244,7 @@ the.app = App:new
 	end,
 
     onRun = function (self)
-		-- disable the hardware cursor
-		--~ self:useSysCursor(false)	
+		self:useSysCursor(true)	
 		
 		network.connect(config.server_hostname, config.server_port)
 		
@@ -256,7 +260,14 @@ the.app = App:new
 			if localconfig.is_bot and not config.draw_debug_info then 
 				-- nop
 			else
-				oldDraw(self)
+                                love.graphics.push()
+                                local m = math.min(love.graphics.getWidth(), love.graphics.getHeight())
+                                local f = m/1024
+                                -- global
+                                inputScale = 1/f
+				love.graphics.scale( f, f )
+                                oldDraw(self)
+                                love.graphics.pop()
 			end
 		end		
     end,

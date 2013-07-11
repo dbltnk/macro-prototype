@@ -540,10 +540,7 @@ Group = Class:extend
 					local sprX = spr.x + scrollX
 					local sprY = spr.y + scrollY
 
-					if sprX < appWidth and sprX + spr.width > 0 and
-					   sprY < appHeight and sprY + spr.height > 0 then
-						spr:draw(sprX, sprY)
-					end
+					spr:draw(sprX, sprY)
 				else
 					spr:draw(scrollX, scrollY)
 				end

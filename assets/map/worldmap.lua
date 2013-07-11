@@ -407,7 +407,7 @@ return {
           visible = true,
           properties = {
             ["_the"] = "camp",
-            ["level"] = "1"
+            ["level"] = "3"
           }
         },
         {
@@ -428,14 +428,14 @@ return {
           name = "Camp",
           type = "",
           shape = "rectangle",
-          x = 679,
-          y = 839,
+          x = 678,
+          y = 838,
           width = 49,
           height = 57,
           visible = true,
           properties = {
             ["_the"] = "camp",
-            ["level"] = "1"
+            ["level"] = "2"
           }
         },
         {
@@ -443,13 +443,13 @@ return {
           type = "",
           shape = "rectangle",
           x = 870,
-          y = 420,
+          y = 419,
           width = 49,
           height = 57,
           visible = true,
           properties = {
             ["_the"] = "camp",
-            ["level"] = "1"
+            ["level"] = "2"
           }
         },
         {
@@ -463,21 +463,21 @@ return {
           visible = true,
           properties = {
             ["_the"] = "camp",
-            ["level"] = "1"
+            ["level"] = "4"
           }
         },
         {
           name = "Camp",
           type = "",
           shape = "rectangle",
-          x = 296,
-          y = 292,
+          x = 295,
+          y = 291,
           width = 49,
           height = 57,
           visible = true,
           properties = {
             ["_the"] = "camp",
-            ["level"] = "1"
+            ["level"] = "3"
           }
         },
         {
@@ -491,7 +491,7 @@ return {
           visible = true,
           properties = {
             ["_the"] = "camp",
-            ["level"] = "1"
+            ["level"] = "2"
           }
         },
         {

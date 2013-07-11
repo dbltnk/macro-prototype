@@ -277,6 +277,23 @@ NameLevel = Text:extend
 	end
 }
 
+CampLevel = Text:extend
+{
+	font = 12,
+	text = "nixda",
+	width = 80,
+	level = 0,
+	tint = {1,1,1},
+
+	onUpdate = function (self)
+		self.text = self.level
+	end,
+	
+	onNew = function (self)
+		the.app.view.layers.ui:add(self)
+	end
+}
+
 CharDebuffDisplay = Text:extend
 {
 	font = 12,

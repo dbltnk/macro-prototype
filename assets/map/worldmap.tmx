@@ -77,7 +77,7 @@
   <object name="Camp" x="390" y="612" width="49" height="57">
    <properties>
     <property name="_the" value="camp"/>
-    <property name="level" value="1"/>
+    <property name="level" value="3"/>
    </properties>
   </object>
   <object name="Camp" x="103" y="901" width="49" height="57">
@@ -86,34 +86,34 @@
     <property name="level" value="1"/>
    </properties>
   </object>
-  <object name="Camp" x="679" y="839" width="49" height="57">
+  <object name="Camp" x="678" y="838" width="49" height="57">
    <properties>
     <property name="_the" value="camp"/>
-    <property name="level" value="1"/>
+    <property name="level" value="2"/>
    </properties>
   </object>
-  <object name="Camp" x="870" y="420" width="49" height="57">
+  <object name="Camp" x="870" y="419" width="49" height="57">
    <properties>
     <property name="_the" value="camp"/>
-    <property name="level" value="1"/>
+    <property name="level" value="2"/>
    </properties>
   </object>
   <object name="Camp" x="615" y="419" width="49" height="57">
    <properties>
     <property name="_the" value="camp"/>
-    <property name="level" value="1"/>
+    <property name="level" value="4"/>
    </properties>
   </object>
-  <object name="Camp" x="296" y="292" width="49" height="57">
+  <object name="Camp" x="295" y="291" width="49" height="57">
    <properties>
     <property name="_the" value="camp"/>
-    <property name="level" value="1"/>
+    <property name="level" value="3"/>
    </properties>
   </object>
   <object name="Camp" x="102" y="133" width="49" height="57">
    <properties>
     <property name="_the" value="camp"/>
-    <property name="level" value="1"/>
+    <property name="level" value="2"/>
    </properties>
   </object>
   <object name="Camp" x="838" y="102" width="49" height="57">

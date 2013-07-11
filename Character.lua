@@ -26,6 +26,7 @@ Character = Tile:extend
 	targetX = 0, 
 	targetY = 0, 
 	pain_bar_size = 32,	
+	dead = false,
         
 	onNew = function (self)
 		self:mixin(GameObject)
@@ -41,6 +42,12 @@ Character = Tile:extend
 			currentValue = self.currentPain, maxValue = self.maxPain, inc = false,
 			width = self.pain_bar_size,
 		}
+		self.nameLevel = NameLevel:new{
+			x = self.x, y = self.y, 
+			skillLevel = self.skillLevel, XPLevel = self.XPLevel,
+			equipLevel = self.equipLevel, 
+			width = self.pain_bar_size * 2,
+		}	
 	end,
 	
 	move = function (self, elapsed)
@@ -55,14 +62,14 @@ Character = Tile:extend
 	
 	onUpdateLocal = function (self, elapsed)
 		self.elapsed = elapsed
-		if self.morale < 100 then self.morale = self.morale + 0.001 * elapsed end
-		if self.morale < 20 and self.ingame then self:logout() end
+		--~ if self.morale < 100 then self.morale = self.morale + 0.001 * elapsed end
+		--~ if self.morale < 20 and self.ingame then self:logout() end
 		self:move(elapsed)
         self:collide(the.app.view.layers.characters)
-        if self.currentPain >= self.maxPain then
+        if self.currentPain >= self.maxPain and not self.dead then
 			self:incapacitate()
         end		
-        if self.currentPain < self.maxPain then
+        if self.currentPain < self.maxPain and not self.dead  then
 			self.currentPain = self.currentPain - config.healthReg * elapsed
         end
 		self.currentPain = utils.clamp(self.currentPain, 0, self.maxPain) 
@@ -77,6 +84,12 @@ Character = Tile:extend
 		self.painBar:updateBar()
 		self.painBar.x = self.x - self.width / 2
 		self.painBar.y = self.y + 5
+		self.nameLevel.x = self.x - self.width / 2
+		self.nameLevel.y = self.y - 15
+		self.nameLevel.skillLevel = self.skillLevel
+		self.nameLevel.XPLevel = self.XPLevel
+		self.nameLevel.equipLevel = self.equipLevel
+		self.nameLevel.alpha = self.alpha
 	end,
 
        updateSelection = function (self)
@@ -146,6 +159,7 @@ Character = Tile:extend
 	incapacitate = function (self)
 		self.visible = false
 		self.solid = false	
+		self.dead = true
 		self:unclicked()	
 		--~ self.targetX, self.targetY = self.x, self.y		
 		if self.killedByPlayer then
@@ -160,6 +174,7 @@ Character = Tile:extend
 	respawn = function (self)
 		self.visible = true
 		self.solid = true
+		self.dead = false		
 		if self.ganked then 
 			self.x, self.y = self.spawnpoint
 			self.currentPain = 0

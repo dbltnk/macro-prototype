@@ -257,20 +257,18 @@ UiBar = Sprite:extend
 
 NameLevel = Text:extend
 {
-	font = 12,
+	font = 8,
 	text = "nixda",
 	width = 80,
-	level = 0,
-	name = "",
+	skillLevel = 0,
+	XPLevel = 0,
+	equipLevel = 0,
 	tint = {0.1,0.1,0.1},
-	weapon = "",
-	armor = "",
-	team = "",
-	
+
 	onUpdate = function (self)
-		self.text = self.name .. " (" .. self.level .. ")\n" .. "[" .. self.team .. "]"
-		self.x = self.x - 20
-		self.y = self.y - 30
+		self.text = self.skillLevel .. " | " .. self.XPLevel .. " | " .. self.equipLevel
+		--~ self.x = self.x - 20
+		--~ self.y = self.y - 30
 		--~ self:centerAround(self.x,self.y,"horizontal")
 	end,
 	

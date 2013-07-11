@@ -4,7 +4,7 @@ local config = {}
 -- macro prototype
 config.charSpeed = 100
 config.healthReg = 10
-config.combatDMG = 10
+config.combatDMG = 4
 
 
 

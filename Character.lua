@@ -4,10 +4,10 @@ Character = Tile:extend
 {
 	class = "Character",
 
-	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "morale", "currentAP", "maxAP", "playTimePreferences"},
+	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "morale", "currentAP", "maxAP", "playTimePreferences", "elapsed"},
 	sync_high = {"x", "y", "currentPain", "maxPain"},
 	sync_low = {"XPLevel", "equipLevel"},
-	
+	 
 	image = "assets/graphics/player.png",
 	
 	skillLevel = 1,
@@ -27,6 +27,7 @@ Character = Tile:extend
 	targetY = 0, 
 	pain_bar_size = 32,	
 	dead = false,
+	elapsed = 0,
         
 	onNew = function (self)
 		self:mixin(GameObject)

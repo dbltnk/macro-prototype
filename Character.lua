@@ -136,8 +136,9 @@ Character = Tile:extend
 		if other.class == "Character" then
 			self.currentPain = self.currentPain + config.combatDMG * self.elapsed * (other.skillLevel + other.XPLevel + other.equipLevel)
 		elseif other.class == "Camp" then
-			if self.XPLevel <= other.level + 3 then
-				self.XPLevel = self.XPLevel + other.level * self.elapsed
+			local delta = other.level - self.XPLevel
+			if delta > -3 then
+				self.XPLevel = self.XPLevel + other.level * config.XPGain * self.elapsed
 			end
 		end
 	end,

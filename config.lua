@@ -5,7 +5,7 @@ local config = {}
 config.charSpeed = 100
 config.healthReg = 10
 config.combatDMG = 4
-
+config.XPGain = 0.1
 
 
 

@@ -26,7 +26,7 @@ Sidebar = Tile:extend
 				local button = loveframes.Create("button", self.frame)
 				--~ local button = loveframes.Create("button")				
 				button:SetSize(256, 32)
-				button:SetText(k.oid)
+				button:SetText(k.name)
 				button.OnClick = function(object)
 					object_manager.get(k.oid):clicked()
 				end

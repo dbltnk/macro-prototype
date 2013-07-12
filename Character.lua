@@ -4,9 +4,8 @@ Character = Tile:extend
 {
 	class = "Character",
 
-	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "morale", "currentAP", "maxAP", "playTimePreferences", "elapsed"},
+	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "morale", "currentAP", "maxAP", "playTimePreferences", "elapsed", "dead", "name", "clan"},
 	sync_high = {"x", "y", "currentPain", "maxPain"},
-	sync_low = {"XPLevel", "equipLevel"},
 	 
 	image = "assets/graphics/player.png",
 	
@@ -196,6 +195,8 @@ Character = Tile:extend
 			width = self.pain_bar_size *1.5, name = self.name, clan = self.clan
 		}
 		drawDebugWrapper(self)
+				print(debug.traceback())
+
 	end,
 	
 	move = function (self, elapsed)

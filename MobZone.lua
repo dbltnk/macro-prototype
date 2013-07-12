@@ -5,7 +5,6 @@ MobZone = Sprite:extend
 	class = "MobZone",
 
 	props = {"gameId", "x", "y", "width", "height", "phase", "round", "round_start_time", "round_end_time", "next_xp_reset_time"},
-	sync_low = {"gameId", "phase", "round", "round_start_time", "round_end_time", "next_xp_reset_time"},
 	round = 0,
 	owner = 0,
 	

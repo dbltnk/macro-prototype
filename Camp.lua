@@ -6,7 +6,6 @@ Camp = Tile:extend
 
 	props = {"x", "y", "level"},
 	sync_high = {},
-	sync_low = {},
 	
 	image = "assets/graphics/camp.png",
 	

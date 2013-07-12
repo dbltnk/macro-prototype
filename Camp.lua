@@ -18,7 +18,7 @@ Camp = Tile:extend
 		object_manager.create(self)
 		the.camps[self] = true
       	drawDebugWrapper(self)
-		print(self.level, self.x,self.y,self.width,self.height)
+		--~ print(self.level, self.x,self.y,self.width,self.height)
 		self.campLevel = CampLevel:new{
 			x = self.x  +self.width / 2, y = self.y + self.height/2, 
 			level = self.level,

@@ -1,59 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="World Map" tilewidth="32" tileheight="32">
-  <image source="Inq XP WM - World Map.png" width="256" height="16448"/>
- </tileset>
- <tileset firstgid="4113" name="Customization" tilewidth="32" tileheight="32">
-  <image source="Inq XP WM - Customization.png" width="192" height="1760"/>
- </tileset>
- <tileset firstgid="4443" name="Desert" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="40" height="32" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Desert" tilewidth="32" tileheight="32">
   <image source="Inq XP WM - Desert.png" width="96" height="128"/>
  </tileset>
- <tileset firstgid="4455" name="Mountains (meu)" tilewidth="32" tileheight="32">
+ <tileset firstgid="13" name="Mountains (meu)" tilewidth="32" tileheight="32">
   <image source="Inq XP WM - Mountains (meu).png" width="96" height="128"/>
  </tileset>
- <tileset firstgid="4467" name="Trees (meu)" tilewidth="32" tileheight="32">
+ <tileset firstgid="25" name="Trees (meu)" tilewidth="32" tileheight="32">
   <image source="Inq XP WM - Trees (meu).png" width="96" height="128"/>
  </tileset>
- <tileset firstgid="4479" name="Trees Opening (meu)" tilewidth="32" tileheight="32">
+ <tileset firstgid="37" name="Trees Opening (meu)" tilewidth="32" tileheight="32">
   <image source="Inq XP WM - Trees Opening (meu).png" width="96" height="128"/>
  </tileset>
- <tileset firstgid="4491" name="Medium Water" tilewidth="32" tileheight="32">
+ <tileset firstgid="49" name="Medium Water" tilewidth="32" tileheight="32">
   <image source="Inq XP WM - Medium Water.png" width="384" height="128"/>
  </tileset>
- <tileset firstgid="4539" name="worldmap_1" tilewidth="32" tileheight="32">
+ <tileset firstgid="97" name="worldmap_1" tilewidth="32" tileheight="32">
   <image source="worldmap_1.png" width="256" height="4096"/>
  </tileset>
- <tileset firstgid="5563" name="worldmap_2" tilewidth="32" tileheight="32">
+ <tileset firstgid="1121" name="worldmap_2" tilewidth="32" tileheight="32">
   <image source="worldmap_2.png" width="256" height="4096"/>
  </tileset>
- <tileset firstgid="6587" name="worldmap_3" tilewidth="32" tileheight="32">
+ <tileset firstgid="2145" name="worldmap_3" tilewidth="32" tileheight="32">
   <image source="worldmap_3.png" width="256" height="4096"/>
  </tileset>
- <tileset firstgid="7611" name="worldmap_4" tilewidth="32" tileheight="32">
+ <tileset firstgid="3169" name="worldmap_4" tilewidth="32" tileheight="32">
   <image source="worldmap_4.png" width="256" height="4096"/>
  </tileset>
- <layer name="ground" width="32" height="32">
+ <layer name="ground" width="40" height="32">
   <data encoding="base64" compression="zlib">
-   eJztzTkBwCAQADAsYJCvBf8SOBXckiFzWi2lJxlhhpXk8/v9fr/f7/f7/X6//9H/h53khAtcAswQ
+   eJztzrERgCAUBcEXiArSf73QAWY/2Zu5fK8kreg75579W3Tn4+Pj4+Pj4+Pj4+Pj4+Pj4+M7NPZf0fOHbwES9SAB
   </data>
  </layer>
- <layer name="impassable" width="32" height="32">
+ <layer name="impassable" width="40" height="32">
   <data encoding="base64" compression="zlib">
-   eJzLE2RgyAPiQjrjPCRcBMTUBq9F8MsXQO3Op4HdxNgPArmj9tPM/s9A+58RcAMt7QeBd6P2E2X/VxHc2EmU9vbTCox0+6MIxB2t7ScEyLXfUZQ6aXSo+n/U/oG3nxppcCj7f9T+wWW/F570h55WYZia9gcNcPoftX9o2p8JxDlUcAOp9mdB+5+ZUJxNZwzrewMAQiJjXA==
+   eJzt07sKgDAMheGCruL98tAugov4gDo6OtoMXQQ12KStmB/O5PJRTKWUqvRax0uQA1un6Bui++8N0lcz2DA+qBTfZ32T9vUPRp8+aBRfEL45ut6K+M+5fVyJz7I4cN9DXL6F6Ib++n5Uic8uTh/Fjfz5/SgSn10ufdvNfZxvycylbw/8fsUnvje+VK/w4MsQNuOD5Y6HscEOIXg1QQ==
   </data>
  </layer>
- <layer name="cities" width="32" height="32">
+ <layer name="cities" width="40" height="32">
   <data encoding="base64" compression="zlib">
-   eJztlLkNgDAUxf4kWY2j4Wg4GgLT4xmQICKyJddunl6E/JUmRbTYYZ++7w80R5xwLtBfaK644V6gf9DMeOJVoC9SE/6Zf1Yj7tpdP8HduBuRN7kBmDAioQ==
+   eJzt1SkSgEAMRNEYFhPAsBiW+5+S9qCIoMV/Vd+3yNREAO+ajGhVp/r8e81TatOgRjUZ7pu1aVGr2gz37dp0qFNdhvsA+OA/qOE/wBe8uxrenSfuuoa7BlBxA8X0B+E=
   </data>
  </layer>
- <layer name="ressources" width="32" height="32">
+ <layer name="ressources" width="40" height="32">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowA/EJUfWPtlB9j+UUAZoFX60SbSXFqlH+MBSJeSA5wXFAfYfs3RsgAOvskxMHwH4h9yuNUQm0fIAf+A9v4H2Y3HDlrmETag2exAzDGI0gQt8icpcUiL/ElKHFKSP0fbGaOAVEDL8o0YQEreGE3fo2CwAQBpvQu6
+   eJztliEOgFAMQ/8FuL8BFKCACyAQCCRBchsmUcuW8NMt6Uum1yxt/y+FkNhsDVqBzhFcH8GC8u9t3Ivy7xMwN3tATV/O4Pqu4Poy0cotO5leuak14zUYZPcoMykakBmfZfcisybyJKJ/PB5C9I/HQzX7h/9Qkg3k+2DBk23mj5B/eQE/Rxir
   </data>
  </layer>
- <objectgroup name="objects" width="32" height="32">
+ <objectgroup name="objects" width="40" height="32">
   <object name="spawnpoint" x="923" y="55" width="25" height="27">
    <properties>
     <property name="" value=""/>

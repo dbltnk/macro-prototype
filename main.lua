@@ -115,6 +115,7 @@ require 'ui'
 require 'loveframes'
 require 'Character'
 require 'Camp'
+require 'Sidebar'
 
 -- stats ----------------------------
 gameStats = storage.load("stats.json") or {}

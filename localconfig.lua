@@ -7,8 +7,8 @@ localconfig.is_bot = false
 
 -- ### Step 1: Set up your screen resolution. ###
 localconfig.fullscreen = false -- Set this to "true" for fullscreen.
-localconfig.screenWidth = 800-- Choose your screen width in pixels.
-localconfig.screenHeight = 600	 -- Choose your screen height in pixels.
+localconfig.screenWidth = 1280-- Choose your screen width in pixels.
+localconfig.screenHeight = 1024	 -- Choose your screen height in pixels.
 
 -- ### Step 2: Set your player name and join one of the four teams. ###
 localconfig.playerName = "dbltnk" -- Just type your nickname in between the "".

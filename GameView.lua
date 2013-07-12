@@ -275,12 +275,8 @@ GameView = View:extend
 			name = localconfig.playerName, pass = localconfig.accountPassword, }, function(fin, result)			
 		end)
 		
-		the.sidebar = Sidebar:new{}
-
-		self.testChar1 = Character:new{x= 600,y = 600, skillLevel = 3, XPLevel = 2, equipLevel = 2}
-		self.testChar2 = Character:new{x= 400,y = 600, skillLevel = 1, XPLevel = 5, equipLevel = 5}
-		self.testChar3 = Character:new{x= 600,y = 500, skillLevel = 1, XPLevel = 3, equipLevel = 1}	
-		self.testChar4 = Character:new{x= 300,y = 700, skillLevel = 3, XPLevel = 3, equipLevel = 5}		
+		the.sidebar = Sidebar:new{}	
+		the.clan = Clan:new{}
     end,
 
     onUpdate = function (self, elapsed)

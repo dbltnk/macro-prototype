@@ -4,15 +4,14 @@ Clan = Sprite:extend
 {
 	class = "Clan",
 
-	props = {"gameId", "x", "y", "width", "height", "phase", "round", "round_start_time", "round_end_time", "next_xp_reset_time"},
-	sync_low = {"gameId", "phase", "round", "round_start_time", "round_end_time", "next_xp_reset_time"},
-	round = 0,
-	owner = 0,
-	
-	gameId = 0,
+	props = {},
+	sync_low = {},
 	
 	width = 1,
 	height = 1,
+	
+	members = {},
+	name = "",
 	
 	onNew = function (self)
 		self.x = -1000
@@ -20,6 +19,24 @@ Clan = Sprite:extend
 		self.visible = false
 		self:mixin(GameObject)
 		the.app.view.layers.management:add(self)
+		
+		self.name = localconfig.team 
+		
+		self.testChar1 = Character:new{x= 600,y = 600, skillLevel = 3, XPLevel = 2, equipLevel = 2}
+		table.insert(self.members, self.testChar1)
+		self.testChar1.clan = self.name
+		
+		self.testChar2 = Character:new{x= 400,y = 600, skillLevel = 1, XPLevel = 5, equipLevel = 5}
+		table.insert(self.members, self.testChar2)
+		self.testChar2.clan = self.name
+		
+		self.testChar3 = Character:new{x= 600,y = 500, skillLevel = 1, XPLevel = 3, equipLevel = 1}	
+		table.insert(self.members, self.testChar3)
+		self.testChar3.clan = self.name
+		
+		self.testChar4 = Character:new{x= 300,y = 700, skillLevel = 3, XPLevel = 3, equipLevel = 5}		
+		table.insert(self.members, self.testChar4)
+		self.testChar4.clan = self.name
 	end,
 	
 	onUpdateLocal = function (self)
@@ -33,16 +50,10 @@ Clan = Sprite:extend
 	end,
 	
 	receiveBoth = function (self, message_name, ...)
-		if message_name == "barrier_died" then
-		elseif message_name == "reset_game" then
-		elseif message_name == "set_phase" then
-		elseif message_name == "ghost_all_players" then
-		end
+
 	end,
 	
 	receiveLocal = function (self, message_name, ...)
-		if message_name == "reset_game" then
-		elseif message_name == "force_next_phase" then
-		end
+
 	end,
 }

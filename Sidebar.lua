@@ -14,7 +14,6 @@ Sidebar = Tile:extend
 		self.frame = loveframes.Create("frame")
 		self.frame:SetSize(256 / inputScale, 1024 / inputScale)
 		self.frame:SetPos(1024 / inputScale, 0 / inputScale, false)
-		self.frame:SetName("Macro Gameplay Prototype")
 		self.frame:SetDraggable(false)
 		self.frame:SetScreenLocked(false)
 		self.frame:ShowCloseButton(false)
@@ -39,6 +38,7 @@ Sidebar = Tile:extend
 			v:SetPos(0 / inputScale, 32 / inputScale + counter * 32 / inputScale)
 			counter = counter + 1
 		end
+			self.frame:SetName("Clan " .. the.clan.name)
 	end,
 	
 	onDie = function (self)

@@ -48,24 +48,24 @@
   </data>
  </layer>
  <objectgroup name="objects" width="40" height="32">
-  <object name="spawnpoint" x="923" y="55" width="25" height="27">
+  <object name="spawnpoint1" x="528" y="164" width="25" height="27">
    <properties>
-    <property name="" value=""/>
+    <property name="_the" value="spawnpoint1"/>
    </properties>
   </object>
-  <object name="spawnpoint" x="926" y="945" width="25" height="27">
+  <object name="spawnpoint4" x="850" y="645" width="25" height="27">
    <properties>
-    <property name="" value=""/>
+    <property name="_the" value="spawnpoint4"/>
    </properties>
   </object>
-  <object name="spawnpoint" x="56" y="931" width="25" height="27">
+  <object name="spawnpoint3" x="277" y="804" width="25" height="27">
    <properties>
-    <property name="" value=""/>
+    <property name="_the" value="spawnpoint3"/>
    </properties>
   </object>
-  <object name="spawnpoint" x="84" y="65" width="25" height="27">
+  <object name="spawnpoint2" x="145" y="482" width="25" height="27">
    <properties>
-    <property name="" value=""/>
+    <property name="_the" value="spawnpoint2"/>
    </properties>
   </object>
   <object name="Camp" x="390" y="612" width="49" height="57">

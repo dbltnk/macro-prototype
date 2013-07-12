@@ -282,7 +282,7 @@ Character = Tile:extend
 	end,
 	
 	onCollide = function (self, other, xOverlap, yOverlap)
-		if other.class == "Character" then
+		if other.class == "Character" and not other.clan == self.clan then
 			self.currentPain = self.currentPain + config.combatDMG * self.elapsed * (other.skillLevel + other.XPLevel + other.equipLevel)
 		elseif other.class == "Camp" then
 			local delta = other.level - self.XPLevel

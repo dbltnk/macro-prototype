@@ -319,55 +319,55 @@ return {
       properties = {},
       objects = {
         {
-          name = "spawnpoint",
+          name = "spawnpoint1",
           type = "",
           shape = "rectangle",
-          x = 923,
-          y = 55,
+          x = 528,
+          y = 164,
           width = 25,
           height = 27,
           visible = true,
           properties = {
-            [""] = ""
+            ["_the"] = "spawnpoint1"
           }
         },
         {
-          name = "spawnpoint",
+          name = "spawnpoint4",
           type = "",
           shape = "rectangle",
-          x = 926,
-          y = 945,
+          x = 850,
+          y = 645,
           width = 25,
           height = 27,
           visible = true,
           properties = {
-            [""] = ""
+            ["_the"] = "spawnpoint4"
           }
         },
         {
-          name = "spawnpoint",
+          name = "spawnpoint3",
           type = "",
           shape = "rectangle",
-          x = 56,
-          y = 931,
+          x = 277,
+          y = 804,
           width = 25,
           height = 27,
           visible = true,
           properties = {
-            [""] = ""
+            ["_the"] = "spawnpoint3"
           }
         },
         {
-          name = "spawnpoint",
+          name = "spawnpoint2",
           type = "",
           shape = "rectangle",
-          x = 84,
-          y = 65,
+          x = 145,
+          y = 482,
           width = 25,
           height = 27,
           visible = true,
           properties = {
-            [""] = ""
+            ["_the"] = "spawnpoint2"
           }
         },
         {

@@ -21,7 +21,7 @@ Sidebar = Tile:extend
 	
 	onUpdate = function (self, elapsed)
 		for k, v in pairs(the.characters) do
-			if not self.buttonExists[k] then
+			if not self.buttonExists[k] and k.clan == the.clan.name then
 				local button = loveframes.Create("button", self.frame)
 				--~ local button = loveframes.Create("button")				
 				button:SetSize(256 / inputScale, 32 / inputScale)

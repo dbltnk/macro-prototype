@@ -263,10 +263,11 @@ NameLevel = Text:extend
 	skillLevel = 0,
 	XPLevel = 0,
 	equipLevel = 0,
+	name = "",
 	tint = {0.1,0.1,0.1},
 
 	onUpdate = function (self)
-		self.text = math.floor(self.skillLevel) .. " | " .. math.floor(self.XPLevel) .. " | " .. math.floor(self.equipLevel)
+		self.text = self.name .. "\n" .. math.floor(self.skillLevel) .. " | " .. math.floor(self.XPLevel) .. " | " .. math.floor(self.equipLevel)
 		--~ self.x = self.x - 20
 		--~ self.y = self.y - 30
 		--~ self:centerAround(self.x,self.y,"horizontal")

@@ -192,7 +192,7 @@ Character = Tile:extend
 			x = self.x, y = self.y, 
 			skillLevel = self.skillLevel, XPLevel = self.XPLevel,
 			equipLevel = self.equipLevel, 
-			width = self.pain_bar_size * 2,
+			width = self.pain_bar_size * 2, name = self.name
 		}
 		drawDebugWrapper(self)
 	end,
@@ -233,7 +233,7 @@ Character = Tile:extend
 		self.painBar.x = self.x - self.width / 2
 		self.painBar.y = self.y + 5
 		self.nameLevel.x = self.x - self.width / 2
-		self.nameLevel.y = self.y - 15
+		self.nameLevel.y = self.y - 28
 		self.nameLevel.skillLevel = self.skillLevel
 		self.nameLevel.XPLevel = self.XPLevel
 		self.nameLevel.equipLevel = self.equipLevel

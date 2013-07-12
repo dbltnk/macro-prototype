@@ -341,6 +341,7 @@ Character = Tile:extend
 	onDieBoth = function (self)
 		the.characters[self] = nil		
 		the.app.view.layers.characters:remove(self)	
-		self.painBar:die()		
+		self.painBar:die()
+		self.nameLevel:die()	
 	end,
 }

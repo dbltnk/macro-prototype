@@ -37,6 +37,7 @@ Sidebar = Tile:extend
 		for k,v in pairs(self.buttonTable) do
 			v:SetPos(0 / inputScale, 32 / inputScale + counter * 32 / inputScale)
 			counter = counter + 1
+			if not k.active then v = nil k = nil end
 		end
 			self.frame:SetName("Clan " .. the.clan.name)
 	end,

@@ -12,8 +12,8 @@ Sidebar = Tile:extend
 	onNew = function (self)
 		the.app.view.layers.ui:add(self)
 		self.frame = loveframes.Create("frame")
-		self.frame:SetSize(256, 1024)
-		self.frame:SetPos(1024, 0, false)
+		self.frame:SetSize(256 / inputScale, 1024 / inputScale)
+		self.frame:SetPos(1024 / inputScale, 0 / inputScale, false)
 		self.frame:SetName("Macro Gameplay Prototype")
 		self.frame:SetDraggable(false)
 		self.frame:SetScreenLocked(false)
@@ -25,7 +25,7 @@ Sidebar = Tile:extend
 			if not self.buttonExists[k] then
 				local button = loveframes.Create("button", self.frame)
 				--~ local button = loveframes.Create("button")				
-				button:SetSize(256, 32)
+				button:SetSize(256 / inputScale, 32 / inputScale)
 				button:SetText(k.name)
 				button.OnClick = function(object)
 					object_manager.get(k.oid):clicked()
@@ -36,7 +36,7 @@ Sidebar = Tile:extend
 		end
 		local counter = 0
 		for k,v in pairs(self.buttonTable) do
-			v:SetPos(0, 32 + counter * 32)
+			v:SetPos(0 / inputScale, 32 / inputScale + counter * 32 / inputScale)
 			counter = counter + 1
 		end
 	end,

@@ -214,7 +214,7 @@ Character = Tile:extend
 		--~ if self.morale < 20 and self.ingame then self:logout() end
 		self:move(elapsed)
         self:collide(the.app.view.layers.characters)
-        self:collide(the.camp)
+        self:collide(the.camps)
         if self.currentPain >= self.maxPain and not self.dead then
 			self:incapacitate()
         end		

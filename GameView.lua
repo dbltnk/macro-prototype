@@ -1,9 +1,7 @@
 -- GameView
 NetworkSyncedObjects = {
-	TargetDummy = true,
-	Npc = true,
-	Barrier = true,
-	Ressource = true,
+	Character = true,
+	Camp = true,
 }
 		
 		

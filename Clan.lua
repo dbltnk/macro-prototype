@@ -39,7 +39,7 @@ Clan = Sprite:extend
 		self.testChar4 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 3, XPLevel = 3, equipLevel = 5}		
 		table.insert(self.members, self.testChar4)
 		self.testChar4.clan = self.name
-	end,
+end,
 	
 	onUpdateLocal = function (self)
 	end,

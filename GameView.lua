@@ -97,7 +97,8 @@ GameView = View:extend
 		local is_server = network.is_first and network.connected_client_count == 1
 		print("startup", network.is_first, network.connected_client_count)
 
-		self:loadMap(mapFile, function (o) return not (o.name and NetworkSyncedObjects[o.name]) end)
+		self:loadMap(mapFile, function (o) return is_server or 
+			not (o.name and NetworkSyncedObjects[o.name]) end)
 				
 		-- first client -> setup "new" world
 		if is_server then

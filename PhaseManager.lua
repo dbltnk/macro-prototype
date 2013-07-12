@@ -28,33 +28,33 @@ PhaseManager = Sprite:extend
 		the.phaseManager = self
 		the.app.view.layers.management:add(self)
 		
-		if self.phase == "warmup" and localconfig.spectator == false then switchToPlayer() end
-		
-		-- rejoin?
-		if self:isLocal() == false and self.phase == "playing" then
-			network.get("gameId", function(gameId)
-				print("REJOIN", gameId)
-				track("rejoin")
-				
-				local lastState = storage.load("game.json")
-				
-				if lastState and lastState.gameId == gameId then
-				
-					if the.player then
-						if the.player.class == "Ghost" then
-							the.player:die()
-							the.player = Player:new(lastState.props)
-							the.app.view:setFogEnabled(true)
-						end
-					end
-					
-				end
-			end)
-		end
-		
-		self:every(1, function() 
-			self:storePlayerState()
-		end)
+		--~ if self.phase == "warmup" and localconfig.spectator == false then switchToPlayer() end
+		--~ 
+		--~ -- rejoin?
+		--~ if self:isLocal() == false and self.phase == "playing" then
+			--~ network.get("gameId", function(gameId)
+				--~ print("REJOIN", gameId)
+				--~ track("rejoin")
+				--~ 
+				--~ local lastState = storage.load("game.json")
+				--~ 
+				--~ if lastState and lastState.gameId == gameId then
+				--~ 
+					--~ if the.player then
+						--~ if the.player.class == "Ghost" then
+							--~ the.player:die()
+							--~ the.player = Player:new(lastState.props)
+							--~ the.app.view:setFogEnabled(true)
+						--~ end
+					--~ end
+					--~ 
+				--~ end
+			--~ end)
+		--~ end
+		--~ 
+		--~ self:every(1, function() 
+			--~ self:storePlayerState()
+		--~ end)
 	end,
 	
 	storePlayerState = function (self)
@@ -85,63 +85,63 @@ PhaseManager = Sprite:extend
 	
 	onUpdateLocal = function (self)
 		--~ print("onUpdateLocal", self.phase)
-		if self.phase == "init_needed" then
-			self:changePhaseToWarmup()
-			track("phase_warmup")
-		elseif self.phase == "warmup" then
-			if network.time > self.round_start_time then
-				self:changePhaseToPlaying()
-				track("phase_playing")
-				track("game_start")
-			end
-		elseif self.phase == "playing" then
-			if the.barrier and the.barrier.alive == false then
-				object_manager.send(self.oid, "barrier_died")
-			end
-
-			if network.time > self.round_end_time then
-				self:changePhaseToAfter()
-				track("game_end", the.barrier and the.barrier.alive == true)
-				if the.barrier then
-					for team, points in pairs(the.barrier.teamscore) do
-						track("game_end_score_team", team, points)
-					end
-					for oid, points in pairs(the.barrier.highscore) do
-						local name = object_manager.get_field(oid, "name", "?")
-						local team = object_manager.get_field(oid, "team", "?")
-						track("game_end_score_player", oid, name, team, points)
-					end
-				end
-				track("phase_after")
-			end	
-			
-			-- reset xp
-			if network.time > self.next_xp_reset_time then
-				self.next_xp_reset_time = self.next_xp_reset_time + config.xpCapTimer
-				object_manager.visit(function(oid,o)
-					if o.class == "Character" then
-						object_manager.send(oid, "reset_xp")
-					end
-				end)
-			end
-		elseif self.phase == "after" then
-			if network.time > self.round_end_time + config.afterTime then
-				self:changePhaseToWarmup()
-				track("phase_warmup")
-			end
-		end
+		--~ if self.phase == "init_needed" then
+			--~ self:changePhaseToWarmup()
+			--~ track("phase_warmup")
+		--~ elseif self.phase == "warmup" then
+			--~ if network.time > self.round_start_time then
+				--~ self:changePhaseToPlaying()
+				--~ track("phase_playing")
+				--~ track("game_start")
+			--~ end
+		--~ elseif self.phase == "playing" then
+			--~ if the.barrier and the.barrier.alive == false then
+				--~ object_manager.send(self.oid, "barrier_died")
+			--~ end
+--~ 
+			--~ if network.time > self.round_end_time then
+				--~ self:changePhaseToAfter()
+				--~ track("game_end", the.barrier and the.barrier.alive == true)
+				--~ if the.barrier then
+					--~ for team, points in pairs(the.barrier.teamscore) do
+						--~ track("game_end_score_team", team, points)
+					--~ end
+					--~ for oid, points in pairs(the.barrier.highscore) do
+						--~ local name = object_manager.get_field(oid, "name", "?")
+						--~ local team = object_manager.get_field(oid, "team", "?")
+						--~ track("game_end_score_player", oid, name, team, points)
+					--~ end
+				--~ end
+				--~ track("phase_after")
+			--~ end	
+			--~ 
+			--~ -- reset xp
+			--~ if network.time > self.next_xp_reset_time then
+				--~ self.next_xp_reset_time = self.next_xp_reset_time + config.xpCapTimer
+				--~ object_manager.visit(function(oid,o)
+					--~ if o.class == "Character" then
+						--~ object_manager.send(oid, "reset_xp")
+					--~ end
+				--~ end)
+			--~ end
+		--~ elseif self.phase == "after" then
+			--~ if network.time > self.round_end_time + config.afterTime then
+				--~ self:changePhaseToWarmup()
+				--~ track("phase_warmup")
+			--~ end
+		--~ end
 	end,
 
 	onUpdateBoth = function (self, elapsed)
-		the.app.view.game_start_time = self.round_start_time
-		
-		if self.phase == "after" then
-			if self.highscore_displayed == false then
-				local text = "The players lost, here's how you did:"
-				the.barrier:showHighscore(text)
-				self.highscore_displayed = true
-			end
-		end
+		--~ the.app.view.game_start_time = self.round_start_time
+		--~ 
+		--~ if self.phase == "after" then
+			--~ if self.highscore_displayed == false then
+				--~ local text = "The players lost, here's how you did:"
+				--~ the.barrier:showHighscore(text)
+				--~ self.highscore_displayed = true
+			--~ end
+		--~ end
 	end,
 	
 	onDieBoth = function (self)

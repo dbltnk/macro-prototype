@@ -201,6 +201,7 @@ UiBar = Sprite:extend
 	
 	currentValue = 0,
 	maxValue = 100,
+	overrideColor = false,
 
 	onNew = function (self)
 		self.bar = Fill:new{
@@ -236,12 +237,16 @@ UiBar = Sprite:extend
 		self.bar.width = f * self.width
 		self.background.width = self.width
 		
-		if self.inc then
-			self.background.fill = {127,127,127,255}
-			self.bar.fill = {255,40,244,255}			
+		if self.overrideColor then 
+			self.bar.fill = self.overrideColor
 		else
-			self.background.fill = {0,255,0,255}
-			self.bar.fill = {255,0,0,255}
+			if self.inc then
+				self.background.fill = {127,127,127,255}
+				self.bar.fill = {255,40,244,255}			
+			else
+				self.background.fill = {0,255,0,255}
+				self.bar.fill = {255,0,0,255}
+			end
 		end
 	end,
 	
@@ -289,6 +294,28 @@ CampLevel = Text:extend
 
 	onUpdate = function (self)
 		self.text = self.level
+	end,
+	
+	onNew = function (self)
+		the.app.view.layers.ui:add(self)
+	end
+}
+
+RessourceText = Text:extend
+{
+	font = 12,
+	text = "nixda",
+	width = 80,
+	faction = "",
+	tint = {1,1,1},
+	ressources = 0,
+
+	onUpdate = function (self)
+		if self.ressources > 0 then
+			self.text = self.faction .. "(" .. self.ressources ..")"
+		else 
+			self.text = self.faction
+		end
 	end,
 	
 	onNew = function (self)

@@ -90,6 +90,7 @@ GameView = View:extend
 		-- object -> true map for easy remove, key contains footstep references
 		the.characters = {}		
 		the.camps = {}
+		the.ressources = {}
 				
 		local mapFile = '/assets/map/worldmap.lua'
 		self:loadLayers(mapFile, true, {objects = true, })

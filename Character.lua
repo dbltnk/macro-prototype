@@ -195,8 +195,6 @@ Character = Tile:extend
 			width = self.pain_bar_size *1.5, name = self.name, clan = self.clan
 		}
 		drawDebugWrapper(self)
-				print(debug.traceback())
-
 	end,
 	
 	move = function (self, elapsed)
@@ -216,6 +214,7 @@ Character = Tile:extend
 		self:move(elapsed)
         self:collide(the.app.view.layers.characters)
         self:collide(the.camps)
+        self:collide(the.ressources)        
         if self.currentPain >= self.maxPain and not self.dead then
 			self:incapacitate()
         end		
@@ -289,6 +288,15 @@ Character = Tile:extend
 			local delta = other.level - self.XPLevel
 			if delta > -3 then
 				self.XPLevel = self.XPLevel + other.level * config.XPGain * self.elapsed
+			end
+		elseif other.class == "Ressource" then
+			if other.controllingFaction ~= self.clan then
+				other.statusBar.currentValue = other.statusBar.currentValue + 1
+			end
+			if other.statusBar.currentValue >= 100 then
+				other.controllingFaction = self.clan
+				other.statusBar.inc = false
+				other.statusBar.overrideColor = the.clan.color
 			end
 		end
 	end,

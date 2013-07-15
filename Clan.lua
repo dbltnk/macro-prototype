@@ -12,6 +12,7 @@ Clan = Sprite:extend
 	members = {},
 	name = "",
 	hometown = 0,
+	color = {},
 	
 	onNew = function (self)
 		self.x = -1000
@@ -21,6 +22,7 @@ Clan = Sprite:extend
 		the.app.view.layers.management:add(self)
 		self.name = localconfig.team 
 		self.hometown = the["spawnpoint" .. math.random(1,4)]
+		self.color = {math.random(0,255),math.random(0,255),math.random(0,255)}
 		local homeX, homeY = tools.object_center(self.hometown)
 		
 		if not self.created_via_network then		

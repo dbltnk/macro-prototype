@@ -2,7 +2,7 @@
 NetworkSyncedObjects = {
 	Character = true,
 	Camp = true,
-	Ressources = true,
+	Ressource = true,
 }
 		
 		

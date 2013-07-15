@@ -26,7 +26,7 @@ GameObject = {
 		if self.sync_high then
 			self.changeMonitorHigh = MonitorChanges:new{ timeout = config.sync_high, obj = self, keys = self.sync_high }
 		end
-		if self.sync_low then
+		if self.props then
 			self.changeMonitorLow = MonitorChanges:new{ timeout = config.sync_low, obj = self, keys = self.props }
 		end
 		

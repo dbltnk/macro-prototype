@@ -2,6 +2,7 @@
 NetworkSyncedObjects = {
 	Character = true,
 	Camp = true,
+	Ressources = true,
 }
 		
 		
@@ -91,6 +92,7 @@ GameView = View:extend
 		the.characters = {}		
 		the.camps = {}
 		the.ressources = {}
+		the.clans = {}
 				
 		local mapFile = '/assets/map/worldmap.lua'
 		self:loadLayers(mapFile, true, {objects = true, })
@@ -173,8 +175,8 @@ GameView = View:extend
 		--~ the.playtestTimerDisplay = PlaytestTimerDisplay:new{ x = 0, y = 0 }
 		--~ the.hud:add(the.playtestTimerDisplay)	
 		
-		--~ the.networkDisplay = NetworkDisplay:new{ x = 0, y = 0 }
-		--~ the.hud:add(the.networkDisplay)	
+		the.networkDisplay = NetworkDisplay:new{ x = 0, y = 0 }
+		self.layers.ui:add(the.networkDisplay)	
 		
 		--~ the.debuffDisplay = DebuffDisplay:new{}
 		--~ the.hud:add(the.debuffDisplay)

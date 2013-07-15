@@ -12,6 +12,7 @@ Ressource = Tile:extend
 	height = 64,
 	controllingFaction = "unclaimed",
 	ressources = 0,
+	
 	        
 	onNew = function (self)
 		self:mixin(GameObject)
@@ -40,6 +41,15 @@ Ressource = Tile:extend
 	onUpdateBoth = function (self)
 		self.controllerDisplay.faction = self.controllingFaction
 		self.controllerDisplay.ressources = self.ressources
+		
+		if self.controllingFaction ~= "unclaimed" then
+			for k,v in pairs(the.clans) do
+				if k.name == self.controllingFaction then 
+					self.statusBar.overrideColor = k.color
+				end
+			end
+		end
+		
 	end,
 	
 	onCollide = function (self, other, xOverlap, yOverlap)

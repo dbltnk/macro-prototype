@@ -20,6 +20,7 @@ Clan = Sprite:extend
 		self.visible = false
 		self:mixin(GameObject)
 		the.app.view.layers.management:add(self)
+		the.clans[self] = true
 		self.name = localconfig.team 
 		self.hometown = the["spawnpoint" .. math.random(1,4)]
 		self.color = {math.random(0,255),math.random(0,255),math.random(0,255)}
@@ -52,6 +53,7 @@ Clan = Sprite:extend
 	
 	onDieBoth = function (self)
 		the.app.view.layers.management:remove(self)
+		the.clans[self] = false		
 	end,
 	
 	receiveBoth = function (self, message_name, ...)

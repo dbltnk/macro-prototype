@@ -503,7 +503,7 @@ NetworkDisplay = Text:extend
 	text = "",
 	x = 0,
 	y = 0, 
-	tint = {0,0,0},
+	tint = {1,1,1},
 	time = 0,
 	width = love.graphics.getWidth() * 0.9,
 	
@@ -533,7 +533,7 @@ NetworkDisplay = Text:extend
 		self.x = 10
 		fps = love.timer.getFPS()
 		self.text = "fps: " .. fps .. " id: " .. (network.client_id or "?") .. " ping: " .. math.floor(self.pingTime * 1000) .. " ms online: " .. self.playerOnline .. "\n" ..
-			"hud: " .. the.hud:count() .. " objs: " .. object_manager.count() .. " " .. network.stats
+			" objs: " .. object_manager.count() .. " " .. network.stats
 	end
 }
 

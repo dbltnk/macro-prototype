@@ -296,7 +296,6 @@ Character = Tile:extend
 			if other.statusBar.currentValue >= 100 then
 				other.controllingFaction = self.clan
 				other.statusBar.inc = false
-				other.statusBar.overrideColor = the.clan.color
 			end
 		end
 	end,

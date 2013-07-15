@@ -4,7 +4,7 @@ Clan = Sprite:extend
 {
 	class = "Clan",
 
-	props = {"name", "hometown", "color"},
+	props = {"name", "color"},
 	
 	width = 1,
 	height = 1,

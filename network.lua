@@ -399,12 +399,21 @@ function network.send (message, reliable)
 			local f = 1000
 			message[k] = math.floor(v * f) / f
 			--~ print("round", k,v,message[k])
-		end
+		elseif type(v) == "function" then
+                    print("ERROR key",k,"is of type function")
+                end
 	end
 	
 	--~ utils.vardump(network_message_keywords)
+
+        local ok, m = pcall(json.encode, message)
 	
-	local m = json.encode(message)
+	if not ok then 
+            print("ERROR encoding value", m)
+            utils.vardump(message)
+            return
+	end
+	
 	--~ print("SEND", server, m:len(), m, reliable and "TRUE" or "FALSE")
 	local channel = reliable and 1 or 0
 	local flag = reliable and "reliable" or "unsequenced"

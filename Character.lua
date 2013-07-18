@@ -282,7 +282,7 @@ Character = Tile:extend
 	end,
 	
 	onCollide = function (self, other, xOverlap, yOverlap)
-		if other.class == "Character" and not other.clan == self.clan then
+		if other.class == "Character" then
 			if other.clan ~= self.clan then
 				local dmg = config.combatDMG * (other.skillLevel + other.XPLevel + other.equipLevel)
 				object_manager.send(other.oid, "damage", dmg, self.oid)

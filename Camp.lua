@@ -43,6 +43,7 @@ Camp = Tile:extend
 		
 	onDieBoth = function (self)
 		the.camps[self] = nil		
-		the.app.view.layers.characters:remove(self)		
+		the.app.view.layers.characters:remove(self)	
+		self.campLevel:die()	
 	end,
 }

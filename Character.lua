@@ -4,8 +4,8 @@ Character = Tile:extend
 {
 	class = "Character",
 
-	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "morale", "currentAP", "maxAP", "playTimePreferences", "elapsed", "dead", "name", "clan"},
-	sync_high = {"x", "y", "currentPain", "maxPain"},
+	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "morale", "currentAP", "maxAP", "playTimePreferences", "elapsed", "dead", "name", "clan", "ressources"},
+	sync_high = {"x", "y", "currentPain", "maxPain", "ressourcesCarried"},
 	 
 	image = "assets/graphics/player.png",
 	
@@ -30,6 +30,7 @@ Character = Tile:extend
 	names = {},
 	name = "noname",
 	clan = "",
+	ressourcesCarried = 0,
         
 	onNew = function (self)
 		-- here's a list of awesome fantasy names, pick one
@@ -295,6 +296,8 @@ Character = Tile:extend
 		elseif other.class == "Ressource" then
 			if other.controllingFaction ~= self.clan then
 				object_manager.send(other.oid, "damage", 1, self.oid)
+			else
+				object_manager.send(other.oid, "give_me_ressources", 1, self.oid)
 			end
 		end
 	end,
@@ -316,6 +319,9 @@ Character = Tile:extend
 			local str, source_oid = ...
 			self.currentPain = self.currentPain + str
 			self.currentPain = utils.clamp(self.currentPain,0,self.maxPain)
+		elseif message_name == "get_ressources" then
+			local str, source_oid = ...
+			self.ressourcesCarried = self.ressourcesCarried + str
 		end
 	end,	
 	

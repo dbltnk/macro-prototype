@@ -20,18 +20,24 @@ Sidebar = Tile:extend
 	end,
 	
 	onUpdate = function (self, elapsed)
+		local i = 0
 		for k, v in pairs(the.characters) do
 			if not self.buttonExists[k] and k.clan == the.clan.name then
-				local button = loveframes.Create("button", self.frame)
-				--~ local button = loveframes.Create("button")				
-				button:SetSize(256 / inputScale, 32 / inputScale)
-				button:SetText(k.name)
-				button.OnClick = function(object)
+				self["button" .. i] = loveframes.Create("button", self.frame)
+				self["button" .. i]:SetSize(256 / inputScale, 32 / inputScale)
+				self["button" .. i]:SetText(k.name .. " (" .. k.ressourcesCarried .. ")")
+				self["button" .. i].OnClick = function(object)
 					object_manager.get(k.oid):clicked()
 				end
 				self.buttonExists[k] = true
-				self.buttonTable[k] = button
+				self.buttonTable[k] = self["button" .. i]
+				i = i + 1
 			end
+		end
+		local j = 0
+		for k, v in pairs(the.characters) do
+			self["button" .. j]:SetText(k.name .. " (" .. k.ressourcesCarried .. ")")
+			j = j + 1
 		end
 		local counter = 0
 		for k,v in pairs(self.buttonTable) do

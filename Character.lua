@@ -283,7 +283,10 @@ Character = Tile:extend
 	
 	onCollide = function (self, other, xOverlap, yOverlap)
 		if other.class == "Character" and not other.clan == self.clan then
-			self.currentPain = self.currentPain + config.combatDMG * self.elapsed * (other.skillLevel + other.XPLevel + other.equipLevel)
+			if other.clan ~= self.clan then
+				local dmg = config.combatDMG * (other.skillLevel + other.XPLevel + other.equipLevel)
+				object_manager.send(other.oid, "damage", dmg, self.oid)
+			end
 		elseif other.class == "Camp" then
 			local delta = other.level - self.XPLevel
 			if delta > -3 then
@@ -310,7 +313,9 @@ Character = Tile:extend
 		elseif message_name == "logout" then
 			self:logout()	
 		elseif message_name == "damage" then
-			
+			local str, source_oid = ...
+			self.currentPain = self.currentPain + str
+			self.currentPain = utils.clamp(self.currentPain,0,self.maxPain)
 		end
 	end,	
 	

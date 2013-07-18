@@ -89,5 +89,7 @@ Ressource = Tile:extend
 	onDieBoth = function (self)
 		the.ressources[self] = nil		
 		the.app.view.layers.characters:remove(self)		
+		self.controllerDisplay:die()
+		self.statusBar:die()
 	end,
 }

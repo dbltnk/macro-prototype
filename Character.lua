@@ -242,21 +242,33 @@ Character = Tile:extend
 		self.nameLevel.alpha = self.alpha
 		self.nameLevel.name = self.name
 		self.nameLevel.clan = self.clan
+
+                -- select none
+                if the.keys:justPressed(" ") then
+                    self.selected = false
+                    self:updateSelection()
+                end
+
+                -- select all
+                if the.keys:justPressed("a") then
+                    self.selected = true
+                    self:updateSelection()
+                end
 	end,
 
        updateSelection = function (self)
            if self.selected then self.image = "assets/graphics/player.png"
            else self.image = "assets/graphics/character.png" end
        end,
-       
+
        clicked = function (self)
           self.selected = not self.selected
            self:updateSelection()
        end,
 
        unclicked = function (self)
-           self.selected = false
-           self:updateSelection()
+       --    self.selected = false
+         --  self:updateSelection()
        end,
 
        clickAction = function (self, mx, my)

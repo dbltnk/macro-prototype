@@ -85,7 +85,7 @@ Ressource = Tile:extend
 			self.controlStatus[object_manager.get_field(source_oid, "clan")] = status
 		elseif message_name == "give_me_ressources" then
 			local str, source_oid = ...
-			if self.ressources > 1 then
+			if self.ressources > 0 then
 				object_manager.send(source_oid, "get_ressources", self.ressources, self.oid)
 				self.ressources = 0
 			end

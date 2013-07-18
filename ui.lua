@@ -311,11 +311,7 @@ RessourceText = Text:extend
 	ressources = 0,
 
 	onUpdate = function (self)
-		if self.ressources > 0 then
-			self.text = self.faction .. "(" .. self.ressources ..")"
-		else 
-			self.text = self.faction
-		end
+		self.text = self.faction .. "(" .. self.ressources ..")"
 	end,
 	
 	onNew = function (self)

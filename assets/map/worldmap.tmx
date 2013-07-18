@@ -146,5 +146,25 @@
     <property name="_the" value="city4"/>
    </properties>
   </object>
+  <object name="Spawnpoint" x="156" y="481" width="22" height="18">
+   <properties>
+    <property name="_the" value="spawnpoint2"/>
+   </properties>
+  </object>
+  <object name="Spawnpoint" x="544" y="160" width="22" height="18">
+   <properties>
+    <property name="_the" value="spawnpoint1"/>
+   </properties>
+  </object>
+  <object name="Spawnpoint" x="288" y="794" width="22" height="18">
+   <properties>
+    <property name="_the" value="spawnpoint3"/>
+   </properties>
+  </object>
+  <object name="Spawnpoint" x="861" y="634" width="22" height="18">
+   <properties>
+    <property name="_the" value="spawnpoint4"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

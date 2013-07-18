@@ -493,6 +493,58 @@ return {
           properties = {
             ["_the"] = "city4"
           }
+        },
+        {
+          name = "Spawnpoint",
+          type = "",
+          shape = "rectangle",
+          x = 156,
+          y = 481,
+          width = 22,
+          height = 18,
+          visible = true,
+          properties = {
+            ["_the"] = "spawnpoint2"
+          }
+        },
+        {
+          name = "Spawnpoint",
+          type = "",
+          shape = "rectangle",
+          x = 544,
+          y = 160,
+          width = 22,
+          height = 18,
+          visible = true,
+          properties = {
+            ["_the"] = "spawnpoint1"
+          }
+        },
+        {
+          name = "Spawnpoint",
+          type = "",
+          shape = "rectangle",
+          x = 288,
+          y = 794,
+          width = 22,
+          height = 18,
+          visible = true,
+          properties = {
+            ["_the"] = "spawnpoint3"
+          }
+        },
+        {
+          name = "Spawnpoint",
+          type = "",
+          shape = "rectangle",
+          x = 861,
+          y = 634,
+          width = 22,
+          height = 18,
+          visible = true,
+          properties = {
+            ["_the"] = "spawnpoint4"
+          }
         }
       }
     }

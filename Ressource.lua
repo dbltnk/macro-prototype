@@ -64,6 +64,11 @@ Ressource = Tile:extend
 				self.statusBar.overrideColor = k.color
 			end
 		end
+		if self.controllingFaction ~= "unclaimed" then
+			if self.statusBar.currentValue == 0 then
+				self.statusBar.currentValue = 100
+			end
+		end
 	end,
 	
 	onCollide = function (self, other, xOverlap, yOverlap)

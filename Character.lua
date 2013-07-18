@@ -297,7 +297,9 @@ Character = Tile:extend
 				--~ other.controllingFaction = self.clan
 				--~ other.statusBar.inc = false
 			--~ end
-			object_manager.send(other.oid, "damage", 1, self.oid)
+			if other.controllingFaction ~= self.clan then
+				object_manager.send(other.oid, "damage", 1, self.oid)
+			end
 		end
 	end,
 	

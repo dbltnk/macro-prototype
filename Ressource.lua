@@ -39,9 +39,9 @@ Ressource = Tile:extend
 		end
 		for clan, number in pairs(self.controlStatus) do
 			if number >= 100 then
-				local newOwner = clan
+				self.controllingFaction = clan
 				for k, _ in pairs(self.controlStatus) do
-					if k ~= newOwner then self.controlStatus[k] = 0 end
+					self.controlStatus[k] = 0
 				end
 				break
 			end

@@ -30,6 +30,8 @@ Character = Tile:extend
 	names = {},
 	name = "noname",
 	clan = "",
+        -- local only for ui/input purpose
+        nr = 0,
 	ressourcesCarried = 0,
         
 	onNew = function (self)
@@ -252,6 +254,11 @@ Character = Tile:extend
                 -- select all
                 if the.keys:justPressed("a") then
                     self.selected = true
+                    self:updateSelection()
+                end
+
+                if self.nr and self.nr > 0 and the.keys:justPressed("" .. self.nr) then
+                    self.selected = not self.selected
                     self:updateSelection()
                 end
 	end,

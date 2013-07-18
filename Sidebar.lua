@@ -46,7 +46,8 @@ Sidebar = Tile:extend
 			counter = counter + 1
 			if not k.active then v:Remove() self.buttonTable[k] = nil end
 		end
-			self.frame:SetName("Clan " .. the.clan.name)
+                
+                self.frame:SetName("Clan " .. the.clan.name)
 	end,
 	
 	onDie = function (self)

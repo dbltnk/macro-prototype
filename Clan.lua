@@ -22,7 +22,7 @@ Clan = Sprite:extend
 		the.app.view.layers.management:add(self)
 		the.clans[self] = true
 		self.name = localconfig.team 
-		self.hometown = the["spawnpoint" .. math.random(1,4)]
+		self.hometown = the["city" .. math.random(1,4)]
 		self.color = {math.random(0,255),math.random(0,255),math.random(0,255)}
 		local homeX, homeY = tools.object_center(self.hometown)
 		

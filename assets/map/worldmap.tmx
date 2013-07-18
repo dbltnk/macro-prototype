@@ -37,30 +37,10 @@
    eJzt07sKgDAMheGCruL98tAugov4gDo6OtoMXQQ12KStmB/O5PJRTKWUqvRax0uQA1un6Bui++8N0lcz2DA+qBTfZ32T9vUPRp8+aBRfEL45ut6K+M+5fVyJz7I4cN9DXL6F6Ib++n5Uic8uTh/Fjfz5/SgSn10ufdvNfZxvycylbw/8fsUnvje+VK/w4MsQNuOD5Y6HscEOIXg1QQ==
   </data>
  </layer>
- <layer name="cities" width="40" height="32">
-  <data encoding="base64" compression="zlib">
-   eJzt1SkSgEAMRNEYFhPAsBiW+5+S9qCIoMV/Vd+3yNREAO+ajGhVp/r8e81TatOgRjUZ7pu1aVGr2gz37dp0qFNdhvsA+OA/qOE/wBe8uxrenSfuuoa7BlBxA8X0B+E=
-  </data>
- </layer>
  <objectgroup name="objects" width="40" height="32">
-  <object name="spawnpoint1" x="528" y="164" width="25" height="27">
+  <object name="City" x="115" y="417" width="106" height="126">
    <properties>
-    <property name="_the" value="spawnpoint1"/>
-   </properties>
-  </object>
-  <object name="spawnpoint4" x="850" y="645" width="25" height="27">
-   <properties>
-    <property name="_the" value="spawnpoint4"/>
-   </properties>
-  </object>
-  <object name="spawnpoint3" x="277" y="804" width="25" height="27">
-   <properties>
-    <property name="_the" value="spawnpoint3"/>
-   </properties>
-  </object>
-  <object name="spawnpoint2" x="145" y="482" width="25" height="27">
-   <properties>
-    <property name="_the" value="spawnpoint2"/>
+    <property name="_the" value="city2"/>
    </properties>
   </object>
   <object name="Camp" x="390" y="612" width="49" height="57">
@@ -149,6 +129,21 @@
   <object name="Ressource" x="761" y="482" width="49" height="57">
    <properties>
     <property name="_the" value="ressource"/>
+   </properties>
+  </object>
+  <object name="City" x="499" y="94" width="106" height="126">
+   <properties>
+    <property name="_the" value="city1"/>
+   </properties>
+  </object>
+  <object name="City" x="243" y="736" width="106" height="126">
+   <properties>
+    <property name="_the" value="city3"/>
+   </properties>
+  </object>
+  <object name="City" x="818" y="576" width="106" height="126">
+   <properties>
+    <property name="_the" value="city4"/>
    </properties>
   </object>
  </objectgroup>

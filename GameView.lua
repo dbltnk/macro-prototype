@@ -3,6 +3,7 @@ NetworkSyncedObjects = {
 	Character = true,
 	Camp = true,
 	Ressource = true,
+	City = true,
 }
 		
 		
@@ -93,6 +94,7 @@ GameView = View:extend
 		the.camps = {}
 		the.ressources = {}
 		the.clans = {}
+		the.cities = {}
 				
 		local mapFile = '/assets/map/worldmap.lua'
 		self:loadLayers(mapFile, true, {objects = true, })

@@ -290,13 +290,6 @@ Character = Tile:extend
 				self.XPLevel = self.XPLevel + other.level * config.XPGain * self.elapsed
 			end
 		elseif other.class == "Ressource" then
-			--~ if other.controllingFaction ~= self.clan then
-				--~ other.statusBar.currentValue = other.statusBar.currentValue + 1
-			--~ end
-			--~ if other.statusBar.currentValue >= 100 then
-				--~ other.controllingFaction = self.clan
-				--~ other.statusBar.inc = false
-			--~ end
 			if other.controllingFaction ~= self.clan then
 				object_manager.send(other.oid, "damage", 1, self.oid)
 			end

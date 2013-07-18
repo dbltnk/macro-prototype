@@ -46,19 +46,22 @@ Ressource = Tile:extend
 				break
 			end
 		end	
-		for clan, number in pairs(self.controlStatus) do
-			print(clan, number)
-		end
+		--~ for clan, number in pairs(self.controlStatus) do
+			--~ print(clan, number)
+		--~ end
 	end,
 	
 	onUpdateBoth = function (self)
 		self.controllerDisplay.faction = self.controllingFaction
 		self.controllerDisplay.ressources = self.ressources
-		if self.controllingFaction ~= "unclaimed" then
-			for k,v in pairs(the.clans) do
-				if k.name == self.controllingFaction then 
-					self.statusBar.overrideColor = k.color
-				end
+		for k,v in pairs (self.controlStatus) do
+			if k ~= self.controllingFaction then
+				self.statusBar.currentValue = v
+			end
+		end	
+		for k,v in pairs(the.clans) do
+			if k.name == self.controllingFaction then 
+				self.statusBar.overrideColor = k.color
 			end
 		end
 	end,

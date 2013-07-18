@@ -178,7 +178,7 @@ var track = function (event) {
 
 track("server_start");
 
-var bindaddr = new enet.Address('0.0.0.0', 9998);
+var bindaddr = new enet.Address('0.0.0.0', 9997);
 
 var server = enet.createServer({
     address: bindaddr, /* the enet.Address to bind the server host to */
@@ -346,4 +346,4 @@ server.on('connect', function(peer, data) {
 
 server.start();
 
-console.log("TCP echo server listening on port 9998");
+console.log("TCP echo server listening on port 9997");

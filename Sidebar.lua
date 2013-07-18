@@ -36,8 +36,10 @@ Sidebar = Tile:extend
 		end
 		local j = 0
 		for k, v in pairs(the.characters) do
-			self["button" .. j]:SetText(k.name .. " (" .. k.ressourcesCarried .. ")")
-			j = j + 1
+                        if self["button" .. j] then
+                            self["button" .. j]:SetText(k.name .. " (" .. k.ressourcesCarried .. ")")
+                            j = j + 1
+                        end
 		end
 		local counter = 0
 		for k,v in pairs(self.buttonTable) do

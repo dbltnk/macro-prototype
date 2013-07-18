@@ -24,7 +24,6 @@ Sidebar = Tile:extend
 			if not self.buttonExists[k] and k.clan == the.clan.name then
 				self["button" .. k.oid] = loveframes.Create("button", self.frame)
 				self["button" .. k.oid]:SetSize(256 / inputScale, 32 / inputScale)
-				self["button" .. k.oid]:SetText(k.name .. " (" .. k.ressourcesCarried .. ")")
 				self["button" .. k.oid].OnClick = function(object)
 					object_manager.get(k.oid):clicked()
 				end
@@ -34,7 +33,11 @@ Sidebar = Tile:extend
 		end
 		for k, v in pairs(the.characters) do
                         if self["button" .. k.oid] then
-                            self["button" .. k.oid]:SetText(k.name .. " (" .. k.ressourcesCarried .. ")")
+                            local hp = 1 - k.currentPain / k.maxPain
+                            local selected = "[ ] "
+                            if k.selected then selected = "[X] " end
+                            local t = selected .. k.name .. " (" .. k.ressourcesCarried .. ", " .. math.floor(hp * 100) .. "%)"
+                            self["button" .. k.oid]:SetText(t)
                         end
 		end
 		local counter = 0

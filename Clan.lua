@@ -27,22 +27,22 @@ Clan = Sprite:extend
 		if self.hometown then
 			local homeX, homeY = tools.object_center(self.hometown)
 			if not self.created_via_network then		
-				self.testChar1 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 3, XPLevel = 2, equipLevel = 2}
+				self.testChar1 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 3, XPLevel = 2, equipLevel = 2, loginTime = 16, logoutTime = 22}
 				table.insert(self.members, self.testChar1)
 				self.testChar1.clan = self.name
 				self.testChar1.nr = 1
 			
-				self.testChar2 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 1, XPLevel = 5, equipLevel = 5}
+				self.testChar2 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 1, XPLevel = 5, equipLevel = 5, loginTime = 12, logoutTime = 23}
 				table.insert(self.members, self.testChar2)
 				self.testChar2.clan = self.name
 				self.testChar2.nr = 2
 				
-				self.testChar3 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 1, XPLevel = 3, equipLevel = 1}	
+				self.testChar3 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 1, XPLevel = 3, equipLevel = 1, loginTime = 20, logoutTime = 4}	
 				table.insert(self.members, self.testChar3)
 				self.testChar3.clan = self.name
 				self.testChar3.nr = 3
 				
-				self.testChar4 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 3, XPLevel = 3, equipLevel = 5}		
+				self.testChar4 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 3, XPLevel = 3, equipLevel = 5, loginTime = 18, logoutTime = 3}		
 				table.insert(self.members, self.testChar4)
 				self.testChar4.clan = self.name
 				self.testChar4.nr = 4

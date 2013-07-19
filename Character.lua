@@ -20,7 +20,7 @@ Character = Tile:extend
 	playTimePreferences = {},
 	killedByPlayer = false,
 	ganked = false,
-	ingame = false,
+	ingame = true,
 	selected = false,
 	targetX = 0, 
 	targetY = 0, 
@@ -33,6 +33,10 @@ Character = Tile:extend
         -- local only for ui/input purpose
         nr = 0,
 	ressourcesCarried = 0,
+	logOutX = 0,
+	logOutY = 0,
+	loginTime = 0,
+	logOutTime = 0,
         
 	onNew = function (self)
 		-- here's a list of awesome fantasy names, pick one
@@ -198,6 +202,9 @@ Character = Tile:extend
 			width = self.pain_bar_size *1.5, name = self.name, clan = self.clan
 		}
 		drawDebugWrapper(self)
+		if self.logoutTime >= 16 and self.ingame then 
+			self:logout()
+		end
 	end,
 	
 	move = function (self, elapsed)
@@ -212,8 +219,6 @@ Character = Tile:extend
 	
 	onUpdateLocal = function (self, elapsed)
 		self.elapsed = elapsed
-		--~ if self.morale < 100 then self.morale = self.morale + 0.001 * elapsed end
-		--~ if self.morale < 20 and self.ingame then self:logout() end
 		self:move(elapsed)
         self:collide(the.app.view.layers.characters)
         self:collide(the.camps)
@@ -225,6 +230,14 @@ Character = Tile:extend
 			self.currentPain = self.currentPain - config.healthReg * elapsed
         end
 		self.currentPain = utils.clamp(self.currentPain, 0, self.maxPain) 
+		if the.phaseManager then
+			if the.phaseManager.fakeHours == self.logoutTime then
+				self:logout()
+			end
+			if the.phaseManager.fakeHours == self.loginTime then
+				self:login()
+			end
+		end
 	end,
 	
 	onUpdateBoth = function (self)
@@ -286,19 +299,23 @@ Character = Tile:extend
        end,
 	
 	login = function (self)
-		if self.morale > 0 then
-			self.visible = false
-			self.solid = false
-			self.x, self.y = self.spawnpoint
+		if not self.ingame then
+			self.visible = true
+			self.solid = true
+			self.x, self.y = self.logOutX, self.logOutY
+			self.logOutX, self.logOutY = 0, 0 
 			self.ingame = true
 		end
 	end,
 	
 	logout = function (self)
-		self.visible = false
-		self.solid = false
-		self.x, self.y = -9999, -9999
-		self.ingame = false
+		if self.ingame then
+			self.visible = false
+			self.solid = false
+			self.logOutX, self.logOutY = self.x, self.y
+			self.x, self.y = -9999, -9999
+			self.ingame = false
+		end
 	end,
 	
 	onCollide = function (self, other, xOverlap, yOverlap)

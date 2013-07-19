@@ -32,13 +32,15 @@ Sidebar = Tile:extend
 			end
 		end
 		for k, v in pairs(the.characters) do
-                        if self["button" .. k.oid] then
-                            local hp = 1 - k.currentPain / k.maxPain
-                            local selected = "[ ] "
-                            if k.selected then selected = "[X] " end
-                            local t = selected .. k.name .. " (" .. k.ressourcesCarried .. ", " .. math.floor(hp * 100) .. "%)"
-                            self["button" .. k.oid]:SetText(t)
-                        end
+			if self["button" .. k.oid] then
+				local hp = 1 - k.currentPain / k.maxPain
+                local selected = "[ ] "
+                if k.selected then selected = "[X] " end
+                local ig = "on"
+                if k.ingame == false then ig = "off" end
+                local t = selected .. k.name .. " (" .. math.floor(k.ressourcesCarried) .. ", " .. math.floor(hp * 100) .. "%)" .. " is " .. ig
+                self["button" .. k.oid]:SetText(t)
+			end
 		end
 		local counter = 0
 		for k,v in pairs(self.buttonTable) do

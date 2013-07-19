@@ -58,6 +58,17 @@ PhaseManager = Sprite:extend
 		self:every(1, function() 
 			self:storePlayerState()
 		end)
+		
+		self:every(config.treasureSpawnTimer, function() 
+			if self:isLocal() then
+				self:spawnTreasure()
+			end		
+		end)
+	end,
+	
+	spawnTreasure = function (self)
+		if self.treasure then self.treasure:die() end
+		self.treasure = Treasure:new{x = math.random(100,900), y = math.random(100,900)}
 	end,
 	
 	storePlayerState = function (self)

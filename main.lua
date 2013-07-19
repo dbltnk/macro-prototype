@@ -115,6 +115,7 @@ require 'Camp'
 require 'Ressource'
 require 'Sidebar'
 require 'City'
+require 'Treasure'
 
 -- stats ----------------------------
 gameStats = storage.load("stats.json") or {}

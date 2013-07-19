@@ -14,7 +14,8 @@ config.afterTime = 60 -- in seconds
 
 config.ressStart = 2
 config.ressEnd = 5
-
+config.treasureWorth = 50
+config.treasureSpawnTimer = 10
 
 -- combat balancing
 config.walkspeed = 200

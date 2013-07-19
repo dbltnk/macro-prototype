@@ -334,6 +334,12 @@ GameView = View:extend
 		--~ the.ressourceDisplay.text = s
 		--~ 
 		--~ audio.update()
+		-- day and night =D
+		if the.phaseManager.fakeHours < 6 or the.phaseManager.fakeHours >= 21 then
+			self:tint(0,0,128,64)
+		else
+			self:tint(0,0,0,0)
+		end
     end,	
 
 	resyncAllLocalObjects = function (self)

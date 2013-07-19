@@ -4,6 +4,7 @@ server/node_modules/
 /trace.log
 geany_run_script.bat
 localconfig.lua
+localconfig2.lua
 build
 changelog.txt
 Thumbs.db

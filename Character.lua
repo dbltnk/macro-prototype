@@ -36,7 +36,7 @@ Character = Tile:extend
 	logOutX = 0,
 	logOutY = 0,
 	loginTime = 0,
-	logOutTime = 0,
+	logoutTime = 0,
         
 	onNew = function (self)
 		-- here's a list of awesome fantasy names, pick one

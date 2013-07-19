@@ -335,10 +335,12 @@ GameView = View:extend
 		--~ 
 		--~ audio.update()
 		-- day and night =D
-		if the.phaseManager.fakeHours < 6 or the.phaseManager.fakeHours >= 21 then
-			self:tint(0,0,128,64)
-		else
-			self:tint(0,0,0,0)
+		if the.phaseManager then
+			if the.phaseManager.fakeHours < 6 or the.phaseManager.fakeHours >= 21 then
+				self:tint(0,0,128,64)
+			else
+				self:tint(0,0,0,0)
+			end
 		end
     end,	
 

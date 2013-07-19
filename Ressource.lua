@@ -5,7 +5,7 @@ Ressource = Tile:extend
 	class = "Ressource",
 
 	props = {"x", "y", "controllingFaction", "ressources"},
-	sync_high = {"controllingFaction", "ressources", "controlStatus"},
+	sync_high = {"controllingFaction", "ressources", "controlStatus", "invul"},
 	
 	image = "assets/graphics/ressource.png",
 	width = 32,
@@ -13,7 +13,7 @@ Ressource = Tile:extend
 	controllingFaction = "unclaimed",
 	ressources = 0,
 	controlStatus = {},
-	
+	invul = true,
 	        
 	onNew = function (self)
 		self:mixin(GameObject)
@@ -22,7 +22,7 @@ Ressource = Tile:extend
 		the.ressources[self] = true
       	drawDebugWrapper(self)
 		self.controllerDisplay = RessourceText:new{
-			x = self.x, y = self.y - 10, 
+			x = self.x, y = self.y - 30, 
 			faction = self.controllingFaction,
 		}
 		self.statusBar = UiBar:new{
@@ -49,10 +49,22 @@ Ressource = Tile:extend
 		--~ for clan, number in pairs(self.controlStatus) do
 			--~ print(clan, number)
 		--~ end
+		
+		if the.phaseManager then
+			if self.invul == true and the.phaseManager.fakeHours == config.ressStart then
+				self.invul = false
+			end
+			
+			if self.invul == false and the.phaseManager.fakeHours == config.ressEnd then
+				self.invul = true
+			end
+		end
 	end,
 	
 	onUpdateBoth = function (self)
-		self.controllerDisplay.faction = self.controllingFaction
+		local flag = "inv"
+		if self.invul == false then flag = "att" end
+		self.controllerDisplay.faction = self.controllingFaction .. "\n [" .. flag .. "] "
 		self.controllerDisplay.ressources = self.ressources
 		for k,v in pairs (self.controlStatus) do
 			if k ~= self.controllingFaction then
@@ -77,12 +89,14 @@ Ressource = Tile:extend
 	
 	receiveLocal = function (self, message_name, ...)	
 		if message_name == "damage" then
-			local str, source_oid = ...
-			local status = self.controlStatus[object_manager.get_field(source_oid, "clan")]
-			if not status then status = 0 end
-			status = status + str
-			status = utils.clamp(status,0,100)
-			self.controlStatus[object_manager.get_field(source_oid, "clan")] = status
+			if not self.invul then
+				local str, source_oid = ...
+				local status = self.controlStatus[object_manager.get_field(source_oid, "clan")]
+				if not status then status = 0 end
+				status = status + str
+				status = utils.clamp(status,0,100)
+				self.controlStatus[object_manager.get_field(source_oid, "clan")] = status
+			end
 		elseif message_name == "give_me_ressources" then
 			local str, source_oid = ...
 			if self.ressources > 0 then

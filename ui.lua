@@ -311,7 +311,7 @@ RessourceText = Text:extend
 	ressources = 0,
 
 	onUpdate = function (self)
-		self.text = self.faction .. "(" .. self.ressources ..")"
+		self.text = self.faction .. " (" .. math.floor(self.ressources) ..")"
 	end,
 	
 	onNew = function (self)

@@ -5,6 +5,7 @@ PhaseManager = Sprite:extend
 	class = "PhaseManager",
 
 	props = {"gameId", "x", "y", "width", "height", "phase", "round", "round_start_time", "round_end_time", "next_xp_reset_time"},
+	sync_high = {"fakeHours", "fakeDays"},
 	phase = "init_needed", -- "init_needed", "warmup", "playing", "after"
 	round = 0,
 	owner = 0,

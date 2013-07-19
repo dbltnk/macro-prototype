@@ -30,7 +30,7 @@ City = Tile:extend
 		self.name = self.names[math.random(1,#self.names)]
 		self.ressourceDisplay = RessourceText:new{
 			x = self.x, y = self.y - 10, 
-			faction = self.name,
+			faction = self.name, width = self.width
 		}
 	end,
 	
@@ -39,7 +39,7 @@ City = Tile:extend
 	end,
 	
 	onUpdateBoth = function (self)
-		self.ressourceDisplay.ressources = self.ressourcesStored
+		self.ressourceDisplay.ressources = math.floor(self.ressourcesStored)
 	end,
 	
 	onCollide = function (self, other, xOverlap, yOverlap)

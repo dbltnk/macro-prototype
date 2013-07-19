@@ -12,7 +12,8 @@ config.warmupTime = 1 -- in seconds
 config.roundTime = 3600 / config.timecompression -- in seconds
 config.afterTime = 60 -- in seconds
 
-
+config.ressStart = 2
+config.ressEnd = 5
 
 
 -- combat balancing

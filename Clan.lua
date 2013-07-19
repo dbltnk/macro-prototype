@@ -31,7 +31,7 @@ Clan = Sprite:extend
 				table.insert(self.members, self.testChar1)
 				self.testChar1.clan = self.name
 				self.testChar1.nr = 1
-
+			
 				self.testChar2 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 1, XPLevel = 5, equipLevel = 5}
 				table.insert(self.members, self.testChar2)
 				self.testChar2.clan = self.name

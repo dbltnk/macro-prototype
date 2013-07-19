@@ -168,8 +168,8 @@ GameView = View:extend
 		--~ the.ressourceDisplay = RessourceDisplay:new{ x = 0, y = 0, text = "ressources uninitialized" }
 		--~ the.hud:add(the.ressourceDisplay) 
 		--~ 
-		--~ the.timerDisplay = TimerDisplay:new{ x = 0, y = 0 }
-		--~ the.hud:add(the.timerDisplay)		
+		the.timerDisplay = TimerDisplay:new{ x = 0, y = 0 }
+		self.layers.ui:add(the.timerDisplay)		
 		--~ 
 		--~ the.xpTimerDisplay = XpTimerDisplay:new{ x = 0, y = 0 }
 		--~ the.hud:add(the.xpTimerDisplay)	

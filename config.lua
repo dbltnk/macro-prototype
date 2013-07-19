@@ -7,7 +7,10 @@ config.healthReg = 10
 config.combatDMG = 0.1
 config.XPGain = 0.1
 
-
+config.timecompression = 1
+config.warmupTime = 1 -- in seconds
+config.roundTime = 3600 / config.timecompression -- in seconds
+config.afterTime = 60 -- in seconds
 
 
 
@@ -28,11 +31,7 @@ config.dmgUnmodified = 100
 config.nextPlaytestAt = 1372960800
 
 -- progression and round time
-config.timecompression = 1
 config.barrierHealth = 50000 / config.timecompression -- 800 dpm * 60 minutes + 2.000 (so one player can't do it alone)
-config.warmupTime = 600 -- in seconds
-config.roundTime = 3600 / config.timecompression -- in seconds
-config.afterTime = 60 -- in seconds
 config.xpCap = 1000
 config.levelCap = 10
 config.dummyXPWorth = 40 * config.timecompression 

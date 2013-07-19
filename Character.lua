@@ -244,7 +244,7 @@ Character = Tile:extend
 		self.nameLevel.alpha = self.alpha
 		self.nameLevel.name = self.name
 		self.nameLevel.clan = self.clan
-
+		
                 -- select none
                 if the.keys:justPressed(" ") then
                     self.selected = false

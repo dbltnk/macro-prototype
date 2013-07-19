@@ -375,7 +375,7 @@ TimerDisplay = Text:extend
 	y = 0, 
 	time = 0,
 	width = 300,
-	tint = {0.1,0.1,0.1},
+	tint = {1,1,1},
 	
 	onUpdate = function (self)
 		self.x = (love.graphics.getWidth() - self.width) / 2

@@ -60,7 +60,9 @@ City = Tile:extend
 	end,
 	
 	onCollide = function (self, other, xOverlap, yOverlap)
-
+		if self.status == "intact" and other.clan ~= self.controllingFaction then
+			self:displace(other)
+		end
 	end,
 	
 	receiveLocal = function (self, message_name, ...)

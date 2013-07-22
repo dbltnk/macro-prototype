@@ -52,8 +52,8 @@ City = Tile:extend
 	onUpdateBoth = function (self)
 		self.cityDisplay.name = self.name
 		self.cityDisplay.level = self.level
-		self.cityDisplay.ressources = math.floor(self.ressourcesStored)
-		self.cityDisplay.essences = math.floor(self.essencesStored)
+		self.cityDisplay.ressources = self.ressourcesStored
+		self.cityDisplay.essences = self.essencesStored
 		self.cityDisplay.controller = self.controllingFaction
 		if self.status == "destroyed" then
 			self.image = "assets/graphics/ruins.png"

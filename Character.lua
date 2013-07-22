@@ -434,7 +434,9 @@ Character = Tile:extend
 	end,
 	
 	gainActionXP = function (self, level)
-		self.actionXP = self.actionXP + config.actionXPGain * self.elapsed * level
-		self.actionXP = math.min(self.actionXP, the.phaseManager.fakeDays)
+		if the.phaseManager then
+			self.actionXP = self.actionXP + config.actionXPGain * self.elapsed * level
+			self.actionXP = math.min(self.actionXP, the.phaseManager.fakeDays)
+		end
 	end,					
 }

@@ -339,8 +339,8 @@ CityDisplay = Text:extend
 		local ess = 0
 		if self.controller == the.clan.name then 
 			lev = self.level
-			res = utils.round(self.ressources,2)
-			ess = utils.round(self.essences,2)
+			res = utils.round(self.ressources,1)
+			ess = utils.round(self.essences,1)
 		else
 			lev = "?" 
 			res = "?"

@@ -273,7 +273,9 @@ NameLevel = Text:extend
 	tint = {0.1,0.1,0.1},
 
 	onUpdate = function (self)
-		self.text = self.name .. " (" .. self.clan .. ")\n" .. math.floor(self.skillLevel) .. " | " .. math.floor(self.XPLevel) .. " | " .. math.floor(self.equipLevel)
+		local aggregateLevel = utils.round(self.skillLevel + self.XPLevel + self.equipLevel,0)
+		if self.clan ~= the.clan.name then aggregateLevel = "?" end
+		self.text = self.name .. " (" .. self.clan .. ") [" .. aggregateLevel .. "]" 
 		--~ self.x = self.x - 20
 		--~ self.y = self.y - 30
 		--~ self:centerAround(self.x,self.y,"horizontal")
@@ -332,7 +334,19 @@ CityDisplay = Text:extend
 	controller = 0,
 
 	onUpdate = function (self)
-		self.text = self.name .. " (" .. self.level .. ", " .. self.controller ..") - " .. math.floor(self.ressources) .. " | " .. math.floor(self.essences)
+		local lev = 0
+		local res = 0
+		local ess = 0
+		if self.controller == the.clan.name then 
+			lev = self.level
+			res = utils.round(self.ressources,2)
+			ess = utils.round(self.essences,2)
+		else
+			lev = "?" 
+			res = "?"
+			ess = "?"
+		end
+		self.text = self.name .. " (" .. lev .. ", " .. self.controller ..") - " .. res .. " | " .. ess
 	end,
 	
 	onNew = function (self)

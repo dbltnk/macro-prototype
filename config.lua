@@ -13,7 +13,7 @@ config.afterTime = 60 -- in seconds
 
 config.ressStart = 1
 config.ressEnd = 10
-config.treasureWorth = 50
+config.treasureWorth = 10
 config.treasureSpawnTimer = 10
 
 config.baseSkillGain = 3 / config.roundTime
@@ -23,6 +23,7 @@ config.combatSkillGain = 27 / config.roundTime
 config.baseXPGain = 30 / config.roundTime
 config.actionXPGain = 30 / config.roundTime * 4
 config.essenceFarmGain = 0.1
+config.equipMultiplier = 3
 
 -- combat balancing
 config.walkspeed = 200

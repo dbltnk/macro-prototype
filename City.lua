@@ -87,6 +87,16 @@ City = Tile:extend
 					self.essencesStored = self.essencesStored - supply
 				end
 			end
+		elseif message_name == "equip_me" then
+			local source_oid = ...
+			if self.ressourcesStored > 0 and object_manager.get(source_oid).equipLevel  < the.phaseManager.fakeDays * config.equipMultiplier then
+				local need = the.phaseManager.fakeDays * config.equipMultiplier - object_manager.get(source_oid).equipLevel 
+				local supply = math.min(need, self.ressourcesStored)
+				if need > 0 and supply > 0 then
+					object_manager.get(source_oid).equipLevel  = object_manager.get(source_oid).equipLevel  + supply
+					self.ressourcesStored = self.ressourcesStored - supply
+				end
+			end	
 		end
 	end,	
 		

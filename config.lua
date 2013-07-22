@@ -5,6 +5,7 @@ local config = {}
 config.charSpeed = 100
 config.healthReg = 5
 config.combatDMG = 15
+config.baseHP = 100
 
 config.timecompression = 1
 config.warmupTime = 1 -- in seconds

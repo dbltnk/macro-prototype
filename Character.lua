@@ -15,8 +15,6 @@ Character = Tile:extend
 	currentPain = 0,
 	maxPain = 100,
 	morale = 100,
-	currentAP = 10,
-	maxAP = 10,
 	playTimePreferences = {},
 	killedByPlayer = false,
 	ganked = false,
@@ -231,7 +229,9 @@ Character = Tile:extend
 		self:move(elapsed)
         self:collide(the.app.view.layers.characters)
         self:collide(the.camps)
-        self:collide(the.ressources)        
+        self:collide(the.ressources)    
+        local aggregateLevel = self.skillLevel + self.XPLevel + self.equipLevel
+        self.maxPain = config.baseHP * aggregateLevel   
         if self.currentPain >= self.maxPain and not self.dead then
 			self:incapacitate()
         end		
@@ -337,6 +337,18 @@ Character = Tile:extend
 			end
 			if other.clan == self.clan and self.dead == false and other.dead == false then
 				self:gainSkill(config.trainingSkillGain * self.elapsed)
+			end
+			if self.dead and other.dead == false then
+				if self.ressourcesCarried > 0 then
+					other.ressourcesCarried = other.ressourcesCarried + self.ressourcesCarried 
+					self.ressourcesCarried = 0
+					print("res")
+				end
+				if self.equipLevel > 0 then
+					other.ressourcesCarried = other.ressourcesCarried + self.equipLevel 
+					self.equipLevel = 0
+					print("equip")					
+				end
 			end
 		elseif other.class == "Camp" then
 			self:gainActionXP(other.level)

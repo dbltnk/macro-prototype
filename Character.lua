@@ -37,6 +37,7 @@ Character = Tile:extend
 	logOutY = 0,
 	loginTime = 0,
 	logoutTime = 0,
+	atHome = false,
         
 	onNew = function (self)
 		-- here's a list of awesome fantasy names, pick one
@@ -205,6 +206,9 @@ Character = Tile:extend
 		if self.logoutTime >= 16 and self.ingame then 
 			self:logout()
 		end
+		self:every(1, function() 
+			self:gainSkill(config.baseSkillGain)
+		end)
 	end,
 	
 	move = function (self, elapsed)
@@ -251,9 +255,9 @@ Character = Tile:extend
 		self.painBar.y = self.y + 5
 		self.nameLevel.x = self.x - self.width / 2
 		self.nameLevel.y = self.y - 28
-		self.nameLevel.skillLevel = self.skillLevel
-		self.nameLevel.XPLevel = self.XPLevel
-		self.nameLevel.equipLevel = self.equipLevel
+		self.nameLevel.skillLevel = utils.round(self.skillLevel,2)
+		self.nameLevel.XPLevel = utils.round(self.XPLevel,2)
+		self.nameLevel.equipLevel = utils.round(self.equipLevel,2)
 		self.nameLevel.alpha = self.alpha
 		self.nameLevel.name = self.name
 		self.nameLevel.clan = self.clan
@@ -323,6 +327,11 @@ Character = Tile:extend
 			if other.clan ~= self.clan and not self.dead then
 				local dmg = config.combatDMG * (self.skillLevel + self.XPLevel + self.equipLevel)
 				object_manager.send(other.oid, "damage", dmg, self.oid)
+				if not other.dead then self:gainSkill(config.combatSkillGain) end
+			end
+			if other.clan == self.clan and self.dead == false and other.dead == false then
+				self:gainSkill(config.trainingSkillGain)
+				print("training")
 			end
 		elseif other.class == "Camp" then
 			local delta = other.level - self.XPLevel
@@ -392,7 +401,6 @@ Character = Tile:extend
 		else
 			self.currentPain = self.maxPain / 2
 		end
-			
 	end,
 		
 	onDieBoth = function (self)
@@ -400,5 +408,9 @@ Character = Tile:extend
 		the.app.view.layers.characters:remove(self)	
 		self.painBar:die()
 		self.nameLevel:die()	
+	end,
+	
+	gainSkill = function (self, amount)
+		self.skillLevel = self.skillLevel + amount
 	end,
 }

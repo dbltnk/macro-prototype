@@ -17,6 +17,10 @@ config.ressEnd = 10
 config.treasureWorth = 50
 config.treasureSpawnTimer = 10
 
+config.baseSkillGain = 3 / config.roundTime
+config.trainingSkillGain = 6 / config.roundTime / 100
+config.combatSkillGain = 27 / config.roundTime / 5
+
 -- combat balancing
 config.walkspeed = 200
 config.runspeed = 250

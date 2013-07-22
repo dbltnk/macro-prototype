@@ -38,7 +38,7 @@ Sidebar = Tile:extend
                 if k.selected then selected = "[X] " end
                 local ig = "on"
                 if k.ingame == false then ig = "off" end
-                local t = selected .. k.name .. " (" .. math.floor(k.ressourcesCarried) .. ", " .. math.floor(hp * 100) .. "%)" .. " is " .. ig
+                local t = selected .. k.name .. "[" ..  utils.round(k.skillLevel,2) .. "|" .. utils.round(k.XPLevel,2) .. "|" .. utils.round(k.equipLevel,2) .. "]" .. " (" .. math.floor(k.ressourcesCarried) .. ", " .. math.floor(hp * 100) .. "%)" .. " is " .. ig
                 self["button" .. k.oid]:SetText(t)
 			end
 		end

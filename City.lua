@@ -77,6 +77,16 @@ City = Tile:extend
 			if self.status == "destroyed" then
 				self.controllingFaction = object_manager.get_field (source_oid, "clan")
 			end
+		elseif message_name == "level_me" then
+			local source_oid = ...
+			if self.essencesStored > 0 and object_manager.get(source_oid).essenceXP  < the.phaseManager.fakeDays then
+				local need = the.phaseManager.fakeDays - object_manager.get(source_oid).essenceXP 
+				local supply = math.min(need, self.essencesStored)
+				if need > 0 and supply > 0 then
+					object_manager.get(source_oid).essenceXP  = object_manager.get(source_oid).essenceXP  + supply
+					self.essencesStored = self.essencesStored - supply
+				end
+			end
 		end
 	end,	
 		

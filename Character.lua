@@ -353,7 +353,8 @@ Character = Tile:extend
 				object_manager.send(other.oid, "get_ressources", self.ressourcesCarried, self.oid)
 				self.ressourcesCarried = 0
 				object_manager.send(other.oid, "get_essences", self.essencesCarried, self.oid)
-				self.essencesCarried = 0				
+				self.essencesCarried = 0	
+				object_manager.send(other.oid, "level_me", self.oid)							
 			end
 		end
 	end,

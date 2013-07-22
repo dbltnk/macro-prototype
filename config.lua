@@ -3,8 +3,8 @@ local config = {}
 
 -- macro prototype
 config.charSpeed = 100
-config.healthReg = 10
-config.combatDMG = 0.1
+config.healthReg = 5
+config.combatDMG = 15
 
 config.timecompression = 1
 config.warmupTime = 1 -- in seconds

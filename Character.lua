@@ -330,7 +330,7 @@ Character = Tile:extend
 	onCollide = function (self, other, xOverlap, yOverlap)
 		if other.class == "Character" then
 			if other.clan ~= self.clan and not self.dead then
-				local dmg = config.combatDMG * (self.skillLevel + self.XPLevel + self.equipLevel)
+				local dmg = config.combatDMG * (self.skillLevel + self.XPLevel + self.equipLevel) * self.elapsed
 				object_manager.send(other.oid, "damage", dmg, self.oid)
 				if not other.dead then self:gainSkill(config.combatSkillGain * self.elapsed) end
 			end

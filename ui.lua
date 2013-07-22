@@ -346,7 +346,7 @@ CityDisplay = Text:extend
 			res = "?"
 			ess = "?"
 		end
-		self.text = self.name .. " (" .. lev .. ", " .. self.controller ..") - " .. res .. " | " .. ess
+		self.text = self.name .. " (" .. lev .. ", " .. self.controller ..") r:" .. res .. " | e:" .. ess
 	end,
 	
 	onNew = function (self)

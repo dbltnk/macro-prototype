@@ -25,6 +25,8 @@ config.actionXPGain = 30 / config.roundTime * 4
 config.essenceFarmGain = 0.1
 config.equipMultiplier = 3
 
+config.upgradeFactor = 10
+
 -- combat balancing
 config.walkspeed = 200
 config.runspeed = 250

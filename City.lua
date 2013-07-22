@@ -44,6 +44,9 @@ City = Tile:extend
 		if self.ressourcesStored > 10 and self.status == "destroyed" then
 			self:build()
 		end
+		if self.level < the.phaseManager.fakeDays then
+			self:upgrade()
+		end
 	end,
 	
 	onUpdateBoth = function (self)
@@ -111,6 +114,7 @@ City = Tile:extend
 		self.status = "intact"
 		self.level = 1
 		self.name = self.names[math.random(1,#self.names)]
+		self.ressourcesStored = self.ressourcesStored - 10
 	end,
 	
 	destroy = function (self)
@@ -119,5 +123,13 @@ City = Tile:extend
 		self.level = 0
 		self.name = "ruin"
 		self.controllingFaction = "unclaimed"
+	end,
+	
+	upgrade = function (self) 
+		local costs = (self.level + 1) * config.upgradeFactor
+		if self.ressourcesStored >= costs then
+			self.level = self.level + 1
+			self.ressourcesStored = self.ressourcesStored - costs
+		end
 	end,
 }

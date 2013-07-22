@@ -69,6 +69,9 @@ City = Tile:extend
 		if message_name == "get_ressources" then
 			local str, source_oid = ...
 			self.ressourcesStored = self.ressourcesStored + str
+		elseif message_name == "get_essences" then
+			local str, source_oid = ...
+			self.essencesStored = self.essencesStored + str
 		elseif message_name == "hello" then
 			local source_oid = ...
 			if self.status == "destroyed" then

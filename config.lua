@@ -21,7 +21,8 @@ config.trainingSkillGain = 6 / config.roundTime
 config.combatSkillGain = 27 / config.roundTime
 
 config.baseXPGain = 30 / config.roundTime
-config.actionXPGain = 30 / config.roundTime * 12 -- cap out in two hours (24/12)
+config.actionXPGain = 30 / config.roundTime * 4
+config.essenceFarmGain = 0.1
 
 -- combat balancing
 config.walkspeed = 200

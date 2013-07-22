@@ -33,6 +33,7 @@ Character = Tile:extend
     -- local only for ui/input purpose
     nr = 0,
 	ressourcesCarried = 0,
+	essencesCarried = 0,
 	logOutX = 0,
 	logOutY = 0,
 	loginTime = 0,
@@ -339,6 +340,7 @@ Character = Tile:extend
 			end
 		elseif other.class == "Camp" then
 			self:gainActionXP(other.level)
+			self.essencesCarried = self.essencesCarried + config.essenceFarmGain * self.elapsed
 		elseif other.class == "Ressource" then
 			if other.controllingFaction ~= self.clan then
 				object_manager.send(other.oid, "damage", 1, self.oid)
@@ -347,9 +349,11 @@ Character = Tile:extend
 			end
 		elseif other.class == "City" then
 			object_manager.send(other.oid, "hello", self.oid)
-			if self.ressourcesCarried > 0 and other.controllingFaction == self.clan then
+			if other.controllingFaction == self.clan then
 				object_manager.send(other.oid, "get_ressources", self.ressourcesCarried, self.oid)
 				self.ressourcesCarried = 0
+				object_manager.send(other.oid, "get_essences", self.essencesCarried, self.oid)
+				self.essencesCarried = 0				
 			end
 		end
 	end,

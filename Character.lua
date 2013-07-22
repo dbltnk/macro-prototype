@@ -336,7 +336,8 @@ Character = Tile:extend
 				object_manager.send(other.oid, "give_me_ressources", 1, self.oid)
 			end
 		elseif other.class == "City" then
-			if self.ressourcesCarried > 0 then
+			object_manager.send(other.oid, "hello", self.oid)
+			if self.ressourcesCarried > 0 and other.controllingFaction == self.clan then
 				object_manager.send(other.oid, "get_ressources", self.ressourcesCarried, self.oid)
 				self.ressourcesCarried = 0
 			end

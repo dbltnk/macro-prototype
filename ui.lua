@@ -319,6 +319,27 @@ RessourceText = Text:extend
 	end
 }
 
+CityDisplay = Text:extend
+{
+	font = 12,
+	text = "nixda",
+	width = 80,
+	tint = {1,1,1},
+	name = "",
+	level = 0,
+	ressources = 0,
+	essences = 0,
+	controller = 0,
+
+	onUpdate = function (self)
+		self.text = self.name .. " (" .. self.level .. ", " .. self.controller ..") - " .. math.floor(self.ressources) .. " | " .. math.floor(self.essences)
+	end,
+	
+	onNew = function (self)
+		the.app.view.layers.ui:add(self)
+	end
+}
+
 CharDebuffDisplay = Text:extend
 {
 	font = 12,

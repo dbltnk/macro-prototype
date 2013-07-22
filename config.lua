@@ -5,7 +5,6 @@ local config = {}
 config.charSpeed = 100
 config.healthReg = 10
 config.combatDMG = 0.1
-config.XPGain = 0.1
 
 config.timecompression = 1
 config.warmupTime = 1 -- in seconds
@@ -18,11 +17,11 @@ config.treasureWorth = 50
 config.treasureSpawnTimer = 10
 
 config.baseSkillGain = 3 / config.roundTime
-config.trainingSkillGain = 6 / config.roundTime / 100
-config.combatSkillGain = 27 / config.roundTime / 5
+config.trainingSkillGain = 6 / config.roundTime
+config.combatSkillGain = 27 / config.roundTime
 
 config.baseXPGain = 30 / config.roundTime
-config.actionXPGain = 30 / config.roundTime / 100
+config.actionXPGain = 30 / config.roundTime * 12 -- cap out in two hours (24/12)
 
 -- combat balancing
 config.walkspeed = 200

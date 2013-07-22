@@ -30,8 +30,8 @@ Character = Tile:extend
 	names = {},
 	name = "noname",
 	clan = "",
-        -- local only for ui/input purpose
-        nr = 0,
+    -- local only for ui/input purpose
+    nr = 0,
 	ressourcesCarried = 0,
 	logOutX = 0,
 	logOutY = 0,
@@ -332,10 +332,10 @@ Character = Tile:extend
 			if other.clan ~= self.clan and not self.dead then
 				local dmg = config.combatDMG * (self.skillLevel + self.XPLevel + self.equipLevel)
 				object_manager.send(other.oid, "damage", dmg, self.oid)
-				if not other.dead then self:gainSkill(config.combatSkillGain) end
+				if not other.dead then self:gainSkill(config.combatSkillGain * self.elapsed) end
 			end
 			if other.clan == self.clan and self.dead == false and other.dead == false then
-				self:gainSkill(config.trainingSkillGain)
+				self:gainSkill(config.trainingSkillGain * self.elapsed)
 			end
 		elseif other.class == "Camp" then
 			self:gainActionXP(other.level)
@@ -416,7 +416,7 @@ Character = Tile:extend
 	end,
 	
 	gainActionXP = function (self, level)
-		self.actionXP = self.actionXP + config.actionXPGain * level
+		self.actionXP = self.actionXP + config.actionXPGain * self.elapsed * level
 		self.actionXP = math.min(self.actionXP, the.phaseManager.fakeDays)
 	end,					
 }

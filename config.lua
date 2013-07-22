@@ -21,6 +21,9 @@ config.baseSkillGain = 3 / config.roundTime
 config.trainingSkillGain = 6 / config.roundTime / 100
 config.combatSkillGain = 27 / config.roundTime / 5
 
+config.baseXPGain = 30 / config.roundTime
+config.actionXPGain = 30 / config.roundTime / 100
+
 -- combat balancing
 config.walkspeed = 200
 config.runspeed = 250

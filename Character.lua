@@ -9,9 +9,9 @@ Character = Tile:extend
 	 
 	image = "assets/graphics/player.png",
 	
-	skillLevel = 1,
-	XPLevel = 1,
-	equipLevel = 1,
+	skillLevel = 0,
+	XPLevel = 0,
+	equipLevel = 0,
 	currentPain = 0,
 	maxPain = 100,
 	morale = 100,
@@ -38,6 +38,9 @@ Character = Tile:extend
 	loginTime = 0,
 	logoutTime = 0,
 	atHome = false,
+	baseXP = 0,
+	actionXP = 0,
+	essenceXP = 0,
         
 	onNew = function (self)
 		-- here's a list of awesome fantasy names, pick one
@@ -208,6 +211,7 @@ Character = Tile:extend
 		end
 		self:every(1, function() 
 			self:gainSkill(config.baseSkillGain)
+			self.baseXP = self.baseXP + config.baseXPGain
 		end)
 	end,
 	
@@ -242,6 +246,7 @@ Character = Tile:extend
 				self:login()
 			end
 		end
+		self.XPLevel = self.baseXP + self.actionXP + self.essenceXP
 	end,
 	
 	onUpdateBoth = function (self)
@@ -331,13 +336,9 @@ Character = Tile:extend
 			end
 			if other.clan == self.clan and self.dead == false and other.dead == false then
 				self:gainSkill(config.trainingSkillGain)
-				print("training")
 			end
 		elseif other.class == "Camp" then
-			local delta = other.level - self.XPLevel
-			if delta > -3 then
-				self.XPLevel = self.XPLevel + other.level * config.XPGain * self.elapsed
-			end
+			self:gainActionXP(other.level)
 		elseif other.class == "Ressource" then
 			if other.controllingFaction ~= self.clan then
 				object_manager.send(other.oid, "damage", 1, self.oid)
@@ -413,4 +414,9 @@ Character = Tile:extend
 	gainSkill = function (self, amount)
 		self.skillLevel = self.skillLevel + amount
 	end,
+	
+	gainActionXP = function (self, level)
+		self.actionXP = self.actionXP + config.actionXPGain * level
+		self.actionXP = math.min(self.actionXP, the.phaseManager.fakeDays)
+	end,					
 }

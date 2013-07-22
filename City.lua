@@ -83,7 +83,7 @@ City = Tile:extend
 		elseif message_name == "level_me" then
 			local source_oid = ...
 			if self.essencesStored > 0 and object_manager.get(source_oid).essenceXP  < the.phaseManager.fakeDays then
-				local need = the.phaseManager.fakeDays - object_manager.get(source_oid).essenceXP 
+				local need = math.min(the.phaseManager.fakeDays - object_manager.get(source_oid).essenceXP, self.level)
 				local supply = math.min(need, self.essencesStored)
 				if need > 0 and supply > 0 then
 					object_manager.get(source_oid).essenceXP  = object_manager.get(source_oid).essenceXP  + supply
@@ -92,8 +92,8 @@ City = Tile:extend
 			end
 		elseif message_name == "equip_me" then
 			local source_oid = ...
-			if self.ressourcesStored > 0 and object_manager.get(source_oid).equipLevel  < the.phaseManager.fakeDays * config.equipMultiplier then
-				local need = the.phaseManager.fakeDays * config.equipMultiplier - object_manager.get(source_oid).equipLevel 
+			if self.ressourcesStored > 0 and object_manager.get(source_oid).equipLevel  < the.phaseManager.fakeDays then
+				local need = math.min(the.phaseManager.fakeDays - object_manager.get(source_oid).equipLevel, self.level) 
 				local supply = math.min(need, self.ressourcesStored)
 				if need > 0 and supply > 0 then
 					object_manager.get(source_oid).equipLevel  = object_manager.get(source_oid).equipLevel  + supply
@@ -127,7 +127,7 @@ City = Tile:extend
 	
 	upgrade = function (self) 
 		local costs = (self.level + 1) * config.upgradeFactor
-		if self.ressourcesStored >= costs then
+		if self.ressourcesStored >= costs and self.status == "intact" then
 			self.level = self.level + 1
 			self.ressourcesStored = self.ressourcesStored - costs
 		end

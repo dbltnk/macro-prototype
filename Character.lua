@@ -260,6 +260,23 @@ Character = Tile:extend
 		
 		-- updates the aggregated XPLevel so we can display and use it
 		self.XPLevel = self.baseXP + self.actionXP + self.essenceXP
+		
+		-- select none
+        if the.keys:justPressed(" ") then
+			self.selected = false
+			self:updateSelection()
+        end
+
+        -- select all
+        if the.keys:justPressed("a") then
+			self.selected = true
+			self:updateSelection()
+		end
+
+		if self.nr and self.nr > 0 and the.keys:justPressed("" .. self.nr) then
+			self.selected = not self.selected
+			self:updateSelection()
+		end
 	end,
 	
 	onUpdateBoth = function (self)
@@ -287,23 +304,6 @@ Character = Tile:extend
 		self.nameLevel.alpha = self.alpha
 		self.nameLevel.name = self.name
 		self.nameLevel.clan = self.clan
-		
-                -- select none
-                if the.keys:justPressed(" ") then
-                    self.selected = false
-                    self:updateSelection()
-                end
-
-                -- select all
-                if the.keys:justPressed("a") then
-                    self.selected = true
-                    self:updateSelection()
-                end
-
-                if self.nr and self.nr > 0 and the.keys:justPressed("" .. self.nr) then
-                    self.selected = not self.selected
-                    self:updateSelection()
-                end
 	end,
 
        updateSelection = function (self)
@@ -414,12 +414,15 @@ Character = Tile:extend
 			self.ressourcesCarried = self.ressourcesCarried + str
 		elseif message_name == "give_me_all_your_stuff" then
 			local source_oid = ...
-			object_manager.get(source_oid).ressourcesCarried = object_manager.get(source_oid).ressourcesCarried + self.ressourcesCarried 
-			self.ressourcesCarried = 0
-			object_manager.get(source_oid).essencesCarried = object_manager.get(source_oid).essencesCarried + self.essencesCarried 
+			object_manager.send(source_oid, "change_value", "essencesCarried", self.essencesCarried)
 			self.essencesCarried = 0
-			object_manager.get(source_oid).ressourcesCarried = object_manager.get(source_oid).ressourcesCarried + self.equipLevel 
+			object_manager.send(source_oid, "change_value", "ressourcesCarried", self.ressourcesCarried)
+			self.ressourcesCarried = 0
+			object_manager.send(source_oid, "change_value", "ressourcesCarried", self.equipLevel)
 			self.equipLevel = 0
+		elseif message_name == "change_value" then
+			local value, amount = ...
+			self[value] = self[value] + amount
 		end
 	end,	
 	

@@ -82,24 +82,28 @@ City = Tile:extend
 			end
 		elseif message_name == "level_me" then
 			local source_oid = ...
-			if self.essencesStored > 0 and object_manager.get(source_oid).essenceXP  < the.phaseManager.fakeDays then
-				local need = math.min(the.phaseManager.fakeDays - object_manager.get(source_oid).essenceXP, self.level)
+			local essenceXP = object_manager.get(source_oid).essenceXP 
+			local cap = math.min(the.phaseManager.fakeDays, self.level)
+			if essenceXP < cap and self.essencesStored > 0 then
+				local need = cap - essenceXP
 				local supply = math.min(need, self.essencesStored)
-				if need > 0 and supply > 0 then
-					object_manager.get(source_oid).essenceXP  = object_manager.get(source_oid).essenceXP  + supply
+				if supply > 0 then
+					object_manager.send(source_oid, "change_value", "essenceXP", supply)
 					self.essencesStored = self.essencesStored - supply
 				end
 			end
 		elseif message_name == "equip_me" then
 			local source_oid = ...
-			if self.ressourcesStored > 0 and object_manager.get(source_oid).equipLevel  < the.phaseManager.fakeDays then
-				local need = math.min(the.phaseManager.fakeDays - object_manager.get(source_oid).equipLevel, self.level) 
+			local equipLevel = object_manager.get(source_oid).equipLevel 
+			local cap = math.min(the.phaseManager.fakeDays, self.level)
+			if equipLevel < cap and self.ressourcesStored > 0 then
+				local need = cap - equipLevel
 				local supply = math.min(need, self.ressourcesStored)
-				if need > 0 and supply > 0 then
-					object_manager.get(source_oid).equipLevel  = object_manager.get(source_oid).equipLevel  + supply
+				if supply > 0 then
+					object_manager.send(source_oid, "change_value", "equipLevel", supply)
 					self.ressourcesStored = self.ressourcesStored - supply
-				end
-			end	
+				end	
+			end
 		end
 	end,	
 		

@@ -4,7 +4,7 @@ Ressource = Tile:extend
 {
 	class = "Ressource",
 
-	props = {"x", "y", "controllingFaction", "ressources"},
+	props = {"x", "y", "controllingFaction", "ressources", "controlStatus", "invul"},
 	sync_high = {"controllingFaction", "ressources", "controlStatus", "invul"},
 	
 	image = "assets/graphics/ressource.png",

@@ -106,7 +106,9 @@ City = Tile:extend
 	onDieBoth = function (self)
 		the.cities[self] = nil		
 		the.app.view.layers.characters:remove(self)	
-		self.ressourceDisplay:die()
+		if self.ressourceDisplay then
+			self.ressourceDisplay:die()
+		end
 	end,
 	
 	build = function (self)

@@ -27,16 +27,19 @@ Treasure = Tile:extend
 	
 	onCollide = function (self, other, xOverlap, yOverlap)
 		if other.class == "Character" then
-			object_manager.send(other.oid, "get_ressources", config.treasureWorth, self.oid)
-			self:die()
+			object_manager.send(self.oid, "die", other.oid)
 		end
 	end,
 	
 	receiveLocal = function (self, message_name, ...)
-	
+		if message_name == "die" and self.active then
+			local source_oid = ...
+			object_manager.send(source_oid, "get_ressources", config.treasureWorth, self.oid)
+			self:die()
+		end
 	end,	
 		
-	onDieBoth = function (self)
+	onDieBoth = function (self, source_oid)
 		the.treasures[self] = nil		
 		the.app.view.layers.characters:remove(self)	
 	end,

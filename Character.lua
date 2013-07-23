@@ -4,8 +4,8 @@ Character = Tile:extend
 {
 	class = "Character",
 
-	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "morale", "currentAP", "maxAP", "playTimePreferences", "elapsed", "dead", "name", "clan", "ressources"},
-	sync_high = {"x", "y", "currentPain", "maxPain", "ressourcesCarried"},
+	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "elapsed", "dead", "name", "clan", "essencesCarried", "ressourcesCarried"},
+	sync_high = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "ressourcesCarried", "essencesCarried", "dead"},
 	 
 	image = "assets/graphics/player.png",
 	
@@ -190,8 +190,11 @@ Character = Tile:extend
 		object_manager.create(self)
 		the.characters[self] = true
         self:updateSelection()
+        
+        -- needed for movement
         self.targetX = self.x
 		self.targetY = self.y
+		
 		self.painBar = UiBar:new{
 			x = self.x, y = self.y, 
 			dx = 0, dy = self.height,
@@ -205,9 +208,13 @@ Character = Tile:extend
 			width = self.pain_bar_size *1.5, name = self.name, clan = self.clan
 		}
 		drawDebugWrapper(self)
+		
+		-- just a quick hack so the right amount of players is ingame when you start
 		if self.logoutTime >= 16 and self.ingame then 
 			self:logout()
 		end
+		
+		-- base skill and XP gains over time
 		self:every(1, function() 
 			self:gainSkill(config.baseSkillGain)
 			self.baseXP = self.baseXP + config.baseXPGain
@@ -229,16 +236,19 @@ Character = Tile:extend
 		self:move(elapsed)
         self:collide(the.app.view.layers.characters)
         self:collide(the.camps)
-        self:collide(the.ressources)    
+        self:collide(the.ressources)  
+      
         local aggregateLevel = self.skillLevel + self.XPLevel + self.equipLevel
         self.maxPain = config.baseHP * aggregateLevel   
-        if self.currentPain >= self.maxPain and not self.dead then
+        if self.currentPain >= self.maxPain * 0.95 and not self.dead then
 			self:incapacitate()
         end		
         if self.currentPain < self.maxPain and not self.dead  then
 			self.currentPain = self.currentPain - config.healthReg * elapsed
         end
 		self.currentPain = utils.clamp(self.currentPain, 0, self.maxPain) 
+		
+		-- characters log in and out at set times
 		if the.phaseManager then
 			if the.phaseManager.fakeHours == self.logoutTime then
 				self:logout()
@@ -247,10 +257,20 @@ Character = Tile:extend
 				self:login()
 			end
 		end
+		
+		-- updates the aggregated XPLevel so we can display and use it
 		self.XPLevel = self.baseXP + self.actionXP + self.essenceXP
 	end,
 	
 	onUpdateBoth = function (self)
+
+		-- color my characters in my clan color
+		for k,v in pairs(the.clans) do
+			if k.name == self.clan then 
+				self.tint = k.color
+			end
+		end
+
 		self.painBar.currentValue = self.currentPain
 		self.painBar.maxValue = self.maxPain
 		self.painBar.bar.alpha = self.alpha
@@ -287,13 +307,18 @@ Character = Tile:extend
 	end,
 
        updateSelection = function (self)
-           if self.selected then self.image = "assets/graphics/player.png"
-           else self.image = "assets/graphics/character.png" end
+           if self.selected then 
+			self.image = "assets/graphics/player.png"
+           else 
+			self.image = "assets/graphics/character.png" 
+           end
        end,
 
        clicked = function (self)
-          self.selected = not self.selected
-           self:updateSelection()
+			if self:isLocal() then
+				self.selected = not self.selected	
+				self:updateSelection()
+			end
        end,
 
        unclicked = function (self)
@@ -330,25 +355,20 @@ Character = Tile:extend
 	
 	onCollide = function (self, other, xOverlap, yOverlap)
 		if other.class == "Character" then
-			if other.clan ~= self.clan and not self.dead then
+			print(self.dead, other.dead)
+			if other.clan ~= self.clan and self.dead == false and other.dead == false then
 				local dmg = config.combatDMG * (self.skillLevel + self.XPLevel + self.equipLevel) * self.elapsed
+				-- dish out damage to the other character
 				object_manager.send(other.oid, "damage", dmg, self.oid)
+				-- give myself some combatSkill for fighting
 				if not other.dead then self:gainSkill(config.combatSkillGain * self.elapsed) end
 			end
 			if other.clan == self.clan and self.dead == false and other.dead == false then
+				-- when with a friendly player assume we're training and gain some skill
 				self:gainSkill(config.trainingSkillGain * self.elapsed)
 			end
-			if self.dead and other.dead == false then
-				if self.ressourcesCarried > 0 then
-					other.ressourcesCarried = other.ressourcesCarried + self.ressourcesCarried 
-					self.ressourcesCarried = 0
-					print("res")
-				end
-				if self.equipLevel > 0 then
-					other.ressourcesCarried = other.ressourcesCarried + self.equipLevel 
-					self.equipLevel = 0
-					print("equip")					
-				end
+			if other.dead and not self.dead then
+				object_manager.send(other.oid, "give_me_all_your_stuff", self.oid)	
 			end
 		elseif other.class == "Camp" then
 			self:gainActionXP(other.level)
@@ -392,6 +412,14 @@ Character = Tile:extend
 		elseif message_name == "get_ressources" then
 			local str, source_oid = ...
 			self.ressourcesCarried = self.ressourcesCarried + str
+		elseif message_name == "give_me_all_your_stuff" then
+			local source_oid = ...
+			object_manager.get(source_oid).ressourcesCarried = object_manager.get(source_oid).ressourcesCarried + self.ressourcesCarried 
+			self.ressourcesCarried = 0
+			object_manager.get(source_oid).essencesCarried = object_manager.get(source_oid).essencesCarried + self.essencesCarried 
+			self.essencesCarried = 0
+			object_manager.get(source_oid).ressourcesCarried = object_manager.get(source_oid).ressourcesCarried + self.equipLevel 
+			self.equipLevel = 0
 		end
 	end,	
 	
@@ -408,6 +436,7 @@ Character = Tile:extend
 			self.ganked = false
 		end
 		self:after(10,function() self:respawn() end)
+		print("incapacit", self.oid)
 	end,
 	
 	respawn = function (self)

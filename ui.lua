@@ -270,7 +270,7 @@ NameLevel = Text:extend
 	equipLevel = 0,
 	name = "",
 	clan = "",
-	tint = {0.1,0.1,0.1},
+	tint = {1,1,1},
 
 	onUpdate = function (self)
 		local aggregateLevel = utils.round(self.skillLevel + self.XPLevel + self.equipLevel,0)
@@ -325,7 +325,7 @@ CityDisplay = Text:extend
 {
 	font = 12,
 	text = "nixda",
-	width = 80,
+	width = 100,
 	tint = {1,1,1},
 	name = "",
 	level = 0,

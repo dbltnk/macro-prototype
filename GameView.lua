@@ -281,8 +281,8 @@ GameView = View:extend
 			name = localconfig.playerName, pass = localconfig.accountPassword, }, function(fin, result)			
 		end)
 		
-		the.sidebar = Sidebar:new{}	
-		the.clan = Clan:new{}
+		the.sidebar = Sidebar:new{owner = network.client_id}	
+		the.clan = Clan:new{owner = network.client_id}
     end,
 
     onUpdate = function (self, elapsed)

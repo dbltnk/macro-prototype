@@ -163,7 +163,7 @@ PhaseManager = Sprite:extend
 	end,
 	
 	formatSeconds = function (self, deltaTime)
-		deltaTime = math.floor(deltaTime)
+		deltaTime = math.floor(deltaTime) 
 		if deltaTime < 0 then deltaTime = 0 end
 		local minutes = math.floor(deltaTime / 60)
 		local seconds = (deltaTime - minutes * 60)
@@ -179,7 +179,7 @@ PhaseManager = Sprite:extend
 	formatToFakeDays = function (self, deltaTime)
 		if deltaTime < 0 then deltaTime = 0 end
 		deltaTime = deltaTime - config.roundTime
-		deltaTime = math.floor(deltaTime)
+		deltaTime = math.floor(deltaTime) * config.timecompression 
 		deltaTime = math.abs(deltaTime)
 		local calcHours = math.floor(deltaTime / 5)
 		self.fakeDays = math.floor(calcHours / 24) + 1

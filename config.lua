@@ -2,12 +2,12 @@
 local config = {}
 
 -- macro prototype
-config.charSpeed = 100
+config.charSpeed = 200
 config.healthReg = 5
 config.combatDMG = 15
 config.baseHP = 100
 
-config.timecompression = 1
+config.timecompression = 0.5
 config.warmupTime = 1 -- in seconds
 config.roundTime = 3600 / config.timecompression -- in seconds
 config.afterTime = 60 -- in seconds

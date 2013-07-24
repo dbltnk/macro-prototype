@@ -26,6 +26,10 @@ config.actionXPGain = 30 / config.roundTime * 4
 config.essenceFarmGain = 0.1
 
 config.upgradeFactor = 10
+config.maxPayload = 15
+
+config.ressourceProduction = 0.5
+config.ressourceCap = 50
 
 -- combat balancing
 config.walkspeed = 200

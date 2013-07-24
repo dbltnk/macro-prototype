@@ -4,14 +4,14 @@ Ressource = Tile:extend
 {
 	class = "Ressource",
 
-	props = {"x", "y", "controllingFaction", "ressources", "controlStatus", "invul"},
-	sync_high = {"controllingFaction", "ressources", "controlStatus", "invul"},
+	props = {"x", "y", "controllingFaction", "ressourcesCarried", "controlStatus", "invul"},
+	sync_high = {"controllingFaction", "ressourcesCarried", "controlStatus", "invul"},
 	
 	image = "assets/graphics/ressource.png",
 	width = 32,
 	height = 64,
 	controllingFaction = "unclaimed",
-	ressources = 0,
+	ressourcesCarried = 0,
 	controlStatus = {},
 	invul = true,
 	        
@@ -35,7 +35,7 @@ Ressource = Tile:extend
 	
 	onUpdateLocal = function (self, elapsed)
 		if self.controllingFaction ~= "unclaimed" then
-			self.ressources = utils.clamp(self.ressources + 1 * elapsed,0,9)
+			self.ressourcesCarried = utils.clamp(self.ressourcesCarried + config.ressourceProduction * elapsed,0,config.ressourceCap)
 		end
 		for clan, number in pairs(self.controlStatus) do
 			if number >= 100 then
@@ -65,7 +65,7 @@ Ressource = Tile:extend
 		local flag = "inv"
 		if self.invul == false then flag = "att" end
 		self.controllerDisplay.faction = self.controllingFaction .. "\n [" .. flag .. "] "
-		self.controllerDisplay.ressources = self.ressources
+		self.controllerDisplay.ressources = self.ressourcesCarried
 		for k,v in pairs (self.controlStatus) do
 			if k ~= self.controllingFaction then
 				self.statusBar.currentValue = v
@@ -98,11 +98,21 @@ Ressource = Tile:extend
 				self.controlStatus[object_manager.get_field(source_oid, "clan")] = status
 			end
 		elseif message_name == "give_me_ressources" then
-			local str, source_oid = ...
-			if self.ressources > 0 then
-				object_manager.send(source_oid, "get_ressources", self.ressources, self.oid)
-				self.ressources = 0
+			local source_oid = ...
+			if self.ressourcesCarried > 0 then
+				object_manager.send(source_oid, "change_value", "ressourcesCarried", self.ressourcesCarried, self.oid)
+				self.ressourcesCarried = self.ressourcesCarried - self.ressourcesCarried
 			end
+		elseif message_name == "change_value" then
+			local value, amount, source_oid = ...
+			--~ local capacity = self:calculateCapacity()
+			--~ if amount <= capacity then
+				self[value] = self[value] + amount
+			--~ else
+				--~ self[value] = self[value] + capacity
+				--~ local overflow = amount - capacity				
+				--~ object_manager.send(source_oid, "change_value", value, overflow)
+			--~ end
 		end
 	end,	
 	

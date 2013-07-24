@@ -34,7 +34,7 @@ Treasure = Tile:extend
 	receiveLocal = function (self, message_name, ...)
 		if message_name == "die" and self.active then
 			local source_oid = ...
-			object_manager.send(source_oid, "get_ressources", config.treasureWorth, self.oid)
+			object_manager.send(source_oid, "change_value", "ressourcesCarried", config.treasureWorth, self.oid)
 			self:die()
 		end
 	end,	

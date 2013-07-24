@@ -4,8 +4,8 @@ Character = Tile:extend
 {
 	class = "Character",
 
-	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "elapsed", "dead", "name", "clan", "essencesCarried", "ressourcesCarried"},
-	sync_high = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "ressourcesCarried", "essencesCarried", "dead"},
+	props = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "elapsed", "dead", "name", "clan", "essencesCarried", "ressourcesCarried", "payload"},
+	sync_high = {"x", "y", "skillLevel", "XPLevel", "equipLevel", "currentPain", "maxPain", "ressourcesCarried", "essencesCarried", "dead", "payload"},
 	 
 	image = "assets/graphics/player.png",
 	
@@ -40,6 +40,7 @@ Character = Tile:extend
 	baseXP = 0,
 	actionXP = 0,
 	essenceXP = 0,
+	payload = 0,
         
 	onNew = function (self)
 		-- here's a list of awesome fantasy names, pick one
@@ -277,6 +278,7 @@ Character = Tile:extend
 			self.selected = not self.selected
 			self:updateSelection()
 		end
+		self.payload = self.equipLevel + self.ressourcesCarried + self.essencesCarried
 	end,
 	
 	onUpdateBoth = function (self)
@@ -355,7 +357,6 @@ Character = Tile:extend
 	
 	onCollide = function (self, other, xOverlap, yOverlap)
 		if other.class == "Character" then
-			print(self.dead, other.dead)
 			if other.clan ~= self.clan and self.dead == false and other.dead == false then
 				local dmg = config.combatDMG * (self.skillLevel + self.XPLevel + self.equipLevel) * self.elapsed
 				-- dish out damage to the other character
@@ -368,16 +369,22 @@ Character = Tile:extend
 				self:gainSkill(config.trainingSkillGain * self.elapsed)
 			end
 			if other.dead and not self.dead then
-				object_manager.send(other.oid, "give_me_all_your_stuff", self.oid)	
+				if self:calculateCapacity() > 0 then
+					object_manager.send(other.oid, "give_me_all_your_stuff", self.oid, self:calculateCapacity())	
+				end
 			end
 		elseif other.class == "Camp" then
 			self:gainActionXP(other.level)
-			self.essencesCarried = self.essencesCarried + config.essenceFarmGain * self.elapsed
+			if self:calculateCapacity() > 0 then
+				self.essencesCarried = self.essencesCarried + config.essenceFarmGain * self.elapsed
+			end
 		elseif other.class == "Ressource" then
 			if other.controllingFaction ~= self.clan then
 				object_manager.send(other.oid, "damage", 1, self.oid)
 			else
-				object_manager.send(other.oid, "give_me_ressources", 1, self.oid)
+				if self:calculateCapacity() > 0 then
+					object_manager.send(other.oid, "give_me_ressources", self.oid)
+				end
 			end
 		elseif other.class == "City" then
 			object_manager.send(other.oid, "hello", self.oid)
@@ -386,8 +393,10 @@ Character = Tile:extend
 				self.ressourcesCarried = 0
 				object_manager.send(other.oid, "get_essences", self.essencesCarried, self.oid)
 				self.essencesCarried = 0	
-				object_manager.send(other.oid, "level_me", self.oid)				
-				object_manager.send(other.oid, "equip_me", self.oid)				
+				object_manager.send(other.oid, "level_me", self.oid)	
+				if self:calculateCapacity() > 0 then			
+					object_manager.send(other.oid, "equip_me", self.oid)	
+				end			
 			end
 		end
 	end,
@@ -414,15 +423,22 @@ Character = Tile:extend
 			self.ressourcesCarried = self.ressourcesCarried + str
 		elseif message_name == "give_me_all_your_stuff" then
 			local source_oid = ...
-			object_manager.send(source_oid, "change_value", "essencesCarried", self.essencesCarried)
+			object_manager.send(source_oid, "change_value", "essencesCarried", self.essencesCarried, self.oid)
 			self.essencesCarried = 0
-			object_manager.send(source_oid, "change_value", "ressourcesCarried", self.ressourcesCarried)
+			object_manager.send(source_oid, "change_value", "ressourcesCarried", self.ressourcesCarried, self.oid)
 			self.ressourcesCarried = 0
-			object_manager.send(source_oid, "change_value", "ressourcesCarried", self.equipLevel)
+			object_manager.send(source_oid, "change_value", "ressourcesCarried", self.equipLevel, self.oid)
 			self.equipLevel = 0
 		elseif message_name == "change_value" then
-			local value, amount = ...
-			self[value] = self[value] + amount
+			local value, amount, source_oid = ...
+			local capacity = self:calculateCapacity()
+			if amount <= capacity then
+				self[value] = self[value] + amount
+			else
+				self[value] = self[value] + capacity
+				local overflow = amount - capacity				
+				object_manager.send(source_oid, "change_value", value, overflow)
+			end
 		end
 	end,	
 	
@@ -471,4 +487,9 @@ Character = Tile:extend
 			self.actionXP = math.min(self.actionXP, the.phaseManager.fakeDays)
 		end
 	end,					
+	
+	calculateCapacity = function (self)
+		return config.maxPayload - self.payload
+	end,
 }
+

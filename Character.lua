@@ -270,14 +270,23 @@ Character = Tile:extend
 
         -- select all
         if the.keys:justPressed("a") then
-			self.selected = true
-			self:updateSelection()
+			if self.ingame then
+				self.selected = true
+				self:updateSelection()
+			end
 		end
 
 		if self.nr and self.nr > 0 and the.keys:justPressed("" .. self.nr) then
 			self.selected = not self.selected
 			self:updateSelection()
+			for character, _ in pairs(the.characters) do
+				if character.nr ~= self.nr then
+					character.selected = false
+					character:updateSelection()
+				end
+			end
 		end
+		
 		self.payload = self.equipLevel + self.ressourcesCarried + self.essencesCarried
 	end,
 	

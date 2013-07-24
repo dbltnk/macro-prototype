@@ -307,6 +307,8 @@ Character = Tile:extend
 		self.painBar:updateBar()
 		self.painBar.x = self.x - self.width / 2
 		self.painBar.y = self.y + 5
+		self.painBar.bar.visible = self.visible
+		self.painBar.background.visible = self.visible
 		self.nameLevel.x = self.x - self.width / 2
 		self.nameLevel.y = self.y - 28
 		self.nameLevel.skillLevel = utils.round(self.skillLevel,2)
@@ -315,6 +317,7 @@ Character = Tile:extend
 		self.nameLevel.alpha = self.alpha
 		self.nameLevel.name = self.name
 		self.nameLevel.clan = self.clan
+		self.nameLevel.visible = self.visible
 	end,
 
        updateSelection = function (self)
@@ -348,7 +351,11 @@ Character = Tile:extend
 		if not self.ingame then
 			self.visible = true
 			self.solid = true
-			self.x, self.y = self.logOutX, self.logOutY
+			if self.logOutX and self.logOutY then
+				self.x, self.y = self.logOutX, self.logOutY
+			else
+				self.x, self.y = the.clan.homeX + math.random(-50,50), the.clan.homeY + math.random(-50,50)
+			end
 			self.logOutX, self.logOutY = 0, 0 
 			self.ingame = true
 		end

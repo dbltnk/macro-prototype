@@ -2,19 +2,19 @@
 local config = {}
 
 -- macro prototype
-config.charSpeed = 200
+config.charSpeed = 100
 config.healthReg = 5
 config.combatDMG = 15
 config.baseHP = 100
 
-config.timecompression = 0.5
+config.timecompression = 1
 config.warmupTime = 1 -- in seconds
 config.roundTime = 3600 / config.timecompression -- in seconds
 config.afterTime = 60 -- in seconds
 
-config.ressStart = 1
-config.ressEnd = 10
-config.treasureWorth = 10
+config.ressStart = 20
+config.ressEnd = 22
+config.treasureWorth = 5
 config.treasureSpawnTimer = 10
 
 config.baseSkillGain = 3 / config.roundTime
@@ -28,7 +28,7 @@ config.essenceFarmGain = 0.1
 config.upgradeFactor = 10
 config.maxPayload = 15
 
-config.ressourceProduction = 0.5
+config.ressourceProduction = 0.1
 config.ressourceCap = 50
 
 -- combat balancing

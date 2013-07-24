@@ -197,7 +197,7 @@ PhaseManager = Sprite:extend
 			return "The game starts in " .. self:formatSeconds(dt) .. "." .. addendum
 		elseif self.phase == "playing" then
 			local dt = self.round_end_time - network.time
-			return self:formatToFakeDays(dt) .. addendum
+			return self:formatToFakeDays(dt) .. addendum .. "\n Mine fights: " .. config.ressStart .. " to " .. config.ressEnd
 		elseif self.phase == "after" then
 			local dt = (self.round_end_time + config.afterTime) - network.time
 			return "Game over. Restart in " .. self:formatSeconds(dt) .. "." .. addendum

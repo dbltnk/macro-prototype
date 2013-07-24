@@ -237,7 +237,11 @@ function skin.DrawButton(object)
 		-- button text
 		love.graphics.setFont(font)
 		love.graphics.setColor(textnonclickablecolor)
-		love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		if text:find("\n") then		
+			love.graphics.print(text, x + width/2 - twidth/4, y + height/2 - theight)
+		else
+			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		end
 		-- button border
 		love.graphics.setColor(bordercolor)
 		skin.OutlinedRectangle(x, y, width, height)
@@ -254,7 +258,11 @@ function skin.DrawButton(object)
 		-- button text
 		love.graphics.setFont(font)
 		love.graphics.setColor(textdowncolor)
-		love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		if text:find("\n") then		
+			love.graphics.print(text, x + width/2 - twidth/4, y + height/2 - theight)
+		else
+			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		end
 		-- button border
 		love.graphics.setColor(bordercolor)
 		skin.OutlinedRectangle(x, y, width, height)
@@ -268,7 +276,11 @@ function skin.DrawButton(object)
 		-- button text
 		love.graphics.setFont(font)
 		love.graphics.setColor(texthovercolor)
-		love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		if text:find("\n") then		
+			love.graphics.print(text, x + width/2 - twidth/4, y + height/2 - theight)
+		else
+			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		end
 		-- button border
 		love.graphics.setColor(bordercolor)
 		skin.OutlinedRectangle(x, y, width, height)
@@ -282,7 +294,11 @@ function skin.DrawButton(object)
 		-- button text
 		love.graphics.setFont(font)
 		love.graphics.setColor(textnohovercolor)
-		love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		if text:find("\n") then		
+			love.graphics.print(text, x + width/2 - twidth/4, y + height/2 - theight)
+		else
+			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		end
 		-- button border
 		love.graphics.setColor(bordercolor)
 		skin.OutlinedRectangle(x, y, width, height)

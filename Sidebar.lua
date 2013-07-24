@@ -20,10 +20,11 @@ Sidebar = Tile:extend
 	end,
 	
 	onUpdate = function (self, elapsed)
+		local buttonHeight = 48
 		for k, v in pairs(the.characters) do
 			if not self.buttonExists[k] and k.clan == the.clan.name then
 				self["button" .. k.oid] = loveframes.Create("button", self.frame)
-				self["button" .. k.oid]:SetSize(256 / inputScale, 32 / inputScale)
+				self["button" .. k.oid]:SetSize(256 / inputScale, buttonHeight / inputScale)
 				self["button" .. k.oid].OnClick = function(object)
 					object_manager.get(k.oid):clicked()
 				end
@@ -38,13 +39,14 @@ Sidebar = Tile:extend
                 if k.selected then selected = "[X] " end
                 local ig = "on"
                 if k.ingame == false then ig = "off" end
-                local t = selected .. k.name .. "[" ..  utils.round(k.skillLevel,1) .. "|" .. utils.round(k.XPLevel,1) .. "|" .. utils.round(k.equipLevel,1) .. "]" .. " (r:" .. utils.round(k.ressourcesCarried,0) .. ", e:" .. utils.round(k.essencesCarried,0) .. ", pl: " .. utils.round(k.payload) .. "/" .. config.maxPayload .. ", hp:" .. math.floor(hp * 100) .. "%)" .. " is " .. ig
+                local aggregateLevel = utils.round(k.skillLevel + k.XPLevel + k.equipLevel,1)
+                local t = selected .. k.name .. " [" .. aggregateLevel .. "]" .. " [sl: " ..  utils.round(k.skillLevel,1) .. " | xl: " .. utils.round(k.XPLevel,1) .. " | el: " .. utils.round(k.equipLevel,1) .. "]\n" .. " (r:" .. utils.round(k.ressourcesCarried,0) .. ", e:" .. utils.round(k.essencesCarried,0) .. ", pl: " .. utils.round(k.payload) .. "/" .. config.maxPayload .. ", hp:" .. math.floor(hp * 100) .. "%)" .. " is " .. ig
                 self["button" .. k.oid]:SetText(t)
 			end
 		end
 		local counter = 0
 		for k,v in pairs(self.buttonTable) do
-			v:SetPos(0 / inputScale, 32 / inputScale + counter * 32 / inputScale)
+			v:SetPos(0 / inputScale, 25 + counter * buttonHeight / inputScale)
 			counter = counter + 1
 			if not k.active then v:Remove() self.buttonTable[k] = nil end
 		end

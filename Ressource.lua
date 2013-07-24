@@ -98,16 +98,22 @@ Ressource = Tile:extend
 				self.controlStatus[object_manager.get_field(source_oid, "clan")] = status
 			end
 		elseif message_name == "give_me_ressources" then
-			local source_oid = ...
-			if self.ressourcesCarried > 0 then
-				object_manager.send(source_oid, "change_value", "ressourcesCarried", self.ressourcesCarried, self.oid)
-				self.ressourcesCarried = self.ressourcesCarried - self.ressourcesCarried
+			local  capacity, source_oid = ...
+			--~ print("got", capacity, self.ressourcesCarried)
+			if self.ressourcesCarried > 0 and capacity > 0 then
+				local cap = math.min(capacity, self.ressourcesCarried)
+				--~ print("giev", capacity, self.ressourcesCarried, cap)				
+				object_manager.send(source_oid, "change_value", "ressourcesCarried", cap, self.oid)
+				self.ressourcesCarried = self.ressourcesCarried - cap
+				--~ print("after", capacity, self.ressourcesCarried, cap)				
 			end
 		elseif message_name == "change_value" then
 			local value, amount, source_oid = ...
 			--~ local capacity = self:calculateCapacity()
 			--~ if amount <= capacity then
+				--~ print("before", value, amount, self[value])
 				self[value] = self[value] + amount
+				--~ print("after", value, amount, self[value])
 			--~ else
 				--~ self[value] = self[value] + capacity
 				--~ local overflow = amount - capacity				

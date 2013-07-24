@@ -383,7 +383,7 @@ Character = Tile:extend
 				object_manager.send(other.oid, "damage", 1, self.oid)
 			else
 				if self:calculateCapacity() > 0 then
-					object_manager.send(other.oid, "give_me_ressources", self.oid)
+					object_manager.send(other.oid, "give_me_ressources", self:calculateCapacity(), self.oid)
 				end
 			end
 		elseif other.class == "City" then

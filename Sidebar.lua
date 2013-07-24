@@ -23,8 +23,9 @@ Sidebar = Tile:extend
 		local buttonHeight = 48
 		for k, v in pairs(the.characters) do
 			if not self.buttonExists[k] and k.clan == the.clan.name then
-				self["button" .. k.oid] = loveframes.Create("button", self.frame)
+				self["button" .. k.oid] = loveframes.Create("imagebutton", self.frame)
 				self["button" .. k.oid]:SetSize(256 / inputScale, buttonHeight / inputScale)
+				self["button" .. k.oid]:SetImage("assets/graphics/button_on.png")
 				self["button" .. k.oid].OnClick = function(object)
 					object_manager.get(k.oid):clicked()
 				end
@@ -35,13 +36,21 @@ Sidebar = Tile:extend
 		for k, v in pairs(the.characters) do
 			if self["button" .. k.oid] then
 				local hp = 1 - k.currentPain / k.maxPain
-                local selected = "[ ] "
-                if k.selected then selected = "[X] " end
+                --~ local selected = "[ ] "
+                --~ if k.selected then selected = "[X] " end
                 local ig = "on"
                 if k.ingame == false then ig = "off" end
                 local aggregateLevel = utils.round(k.skillLevel + k.XPLevel + k.equipLevel,1)
-                local t = selected .. k.name .. " [" .. aggregateLevel .. "]" .. " [sl: " ..  utils.round(k.skillLevel,1) .. " | xl: " .. utils.round(k.XPLevel,1) .. " | el: " .. utils.round(k.equipLevel,1) .. "]\n" .. " (r:" .. utils.round(k.ressourcesCarried,0) .. ", e:" .. utils.round(k.essencesCarried,0) .. ", pl: " .. utils.round(k.payload) .. "/" .. config.maxPayload .. ", hp:" .. math.floor(hp * 100) .. "%)" .. " is " .. ig
+                local t = "[" .. k.nr .. "] " .. k.name .. " [" .. aggregateLevel .. "]" .. " [sl: " ..  utils.round(k.skillLevel,1) .. " | xl: " .. utils.round(k.XPLevel,1) .. " | el: " .. utils.round(k.equipLevel,1) .. "]\n" .. " (r:" .. utils.round(k.ressourcesCarried,0) .. ", e:" .. utils.round(k.essencesCarried,0) .. ", pl: " .. utils.round(k.payload) .. "/" .. config.maxPayload .. ", hp:" .. math.floor(hp * 100) .. "%)" .. " is " .. ig
                 self["button" .. k.oid]:SetText(t)
+                if k.selected then 
+					self["button" .. k.oid]:SetImage("assets/graphics/button_selected.png")  
+				else
+					self["button" .. k.oid]:SetImage("assets/graphics/button_on.png")  
+				end
+                if not k.ingame then
+					self["button" .. k.oid]:SetImage("assets/graphics/button_off.png")    
+				end            
 			end
 		end
 		local counter = 0

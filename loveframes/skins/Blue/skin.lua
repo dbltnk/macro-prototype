@@ -386,7 +386,7 @@ function skin.DrawImageButton(object)
 	local hover = object:GetHover()
 	local image = object:GetImage()
 	local down = object.down
-	local font = skin.controls.imagebutton_text_font
+	local font = skin.controls.button_text_font
 	local twidth = font:getWidth(object.text)
 	local theight = font:getHeight(object.text)
 	local textdowncolor = skin.controls.imagebutton_text_down_color
@@ -400,9 +400,11 @@ function skin.DrawImageButton(object)
 		end
 		love.graphics.setFont(font)
 		love.graphics.setColor(0, 0, 0, 255)
-		love.graphics.print(text, x + width/2 - twidth/2 + 1, y + height - theight - 5 + 1)
-		love.graphics.setColor(textdowncolor)
-		love.graphics.print(text, x + width/2 - twidth/2 + 1, y + height - theight - 6 + 1)
+		if text:find("\n") then		
+			love.graphics.print(text, x + width/2 - twidth/4, y + height/2 - theight)
+		else
+			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		end
 	elseif hover then
 		if image then
 			love.graphics.setColor(255, 255, 255, 255)
@@ -410,9 +412,11 @@ function skin.DrawImageButton(object)
 		end
 		love.graphics.setFont(font)
 		love.graphics.setColor(0, 0, 0, 255)
-		love.graphics.print(text, x + width/2 - twidth/2, y + height - theight - 5)
-		love.graphics.setColor(texthovercolor)
-		love.graphics.print(text, x + width/2 - twidth/2, y + height - theight - 6)
+		if text:find("\n") then		
+			love.graphics.print(text, x + width/2 - twidth/4, y + height/2 - theight)
+		else
+			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		end
 	else
 		if image then
 			love.graphics.setColor(255, 255, 255, 255)
@@ -420,9 +424,11 @@ function skin.DrawImageButton(object)
 		end
 		love.graphics.setFont(font)
 		love.graphics.setColor(0, 0, 0, 255)
-		love.graphics.print(text, x + width/2 - twidth/2, y + height - theight - 5)
-		love.graphics.setColor(textnohovercolor)
-		love.graphics.print(text, x + width/2 - twidth/2, y + height - theight - 6)
+		if text:find("\n") then		
+			love.graphics.print(text, x + width/2 - twidth/4, y + height/2 - theight)
+		else
+			love.graphics.print(text, x + width/2 - twidth/2, y + height/2 - theight/2)
+		end
 	end
 
 end

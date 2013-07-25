@@ -240,13 +240,19 @@ Character = Tile:extend
         self:collide(the.ressources)  
       
         local aggregateLevel = self.skillLevel + self.XPLevel + self.equipLevel
-        self.maxPain = config.baseHP * aggregateLevel   
+        self.maxPain = config.baseHP * aggregateLevel  
+         
+        -- die when you have too much damage
         if self.currentPain >= self.maxPain * 0.95 and not self.dead then
 			self:incapacitate()
         end		
+        -- health regeneration
         if self.currentPain < self.maxPain and not self.dead  then
-			self.currentPain = self.currentPain - config.healthReg * elapsed
+			local regAmount = self.currentPain * elapsed * config.healthReg
+			self.currentPain = self.currentPain - regAmount
+			print(self.currentPain, regAmount)
         end
+        -- cap
 		self.currentPain = utils.clamp(self.currentPain, 0, self.maxPain) 
 		
 		-- characters log in and out at set times

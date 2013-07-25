@@ -48,6 +48,9 @@ Sidebar = Tile:extend
 				else
 					self["button" .. k.oid]:SetImage("assets/graphics/button_on.png")  
 				end
+				if k.dead then 
+					self["button" .. k.oid]:SetImage("assets/graphics/button_dead.png")    
+				end
                 if not k.ingame then
 					self["button" .. k.oid]:SetImage("assets/graphics/button_off.png")    
 				end            

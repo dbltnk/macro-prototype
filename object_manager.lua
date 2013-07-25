@@ -121,6 +121,18 @@ function object_manager.find_where (filter)
 	return l
 end 
 
+-- returns o, oid
+-- function filter(oid,o) -> bool (first true is result)
+function object_manager.first_where (filter)
+	for oid,o in pairs(object_manager.objects) do
+		if filter(oid,o) then
+			return o, oid
+		end
+	end
+	
+	return nil
+end 
+
 -- oids: oid or list or oids
 function object_manager.send (oids, message_name, ...)
 	if type(oids) ~= "table" then

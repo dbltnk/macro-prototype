@@ -250,7 +250,6 @@ Character = Tile:extend
         if self.currentPain < self.maxPain and not self.dead  then
 			local regAmount = self.currentPain * elapsed * config.healthReg
 			self.currentPain = self.currentPain - regAmount
-			print(self.currentPain, regAmount)
         end
         -- cap
 		self.currentPain = utils.clamp(self.currentPain, 0, self.maxPain) 
@@ -379,13 +378,18 @@ Character = Tile:extend
 	
 	onCollide = function (self, other, xOverlap, yOverlap)
 		if other.class == "Character" then
-			if other.clan ~= self.clan and self.dead == false and other.dead == false then
+			local otherClan = object_manager.first_where(function(oid,o) 
+				return o.class == "Clan" and o.name == other.clan
+			end)
+			if otherClan and other.clan ~= self.clan and self.dead == false and other.dead == false and otherClan.status ~= "allied" then	
 				local dmg = config.combatDMG * (self.skillLevel + self.XPLevel + self.equipLevel) * self.elapsed
 				-- dish out damage to the other character
 				object_manager.send(other.oid, "damage", dmg, self.oid)
 				-- give myself some combatSkill for fighting
 				if not other.dead then self:gainSkill(config.combatSkillGain * self.elapsed) end
-			end
+							print(otherClan.status)
+
+			end		
 			if other.clan == self.clan and self.dead == false and other.dead == false then
 				-- when with a friendly player assume we're training and gain some skill
 				self:gainSkill(config.trainingSkillGain * self.elapsed)
@@ -477,7 +481,6 @@ Character = Tile:extend
 			self.ganked = false
 		end
 		self:after(10,function() self:respawn() end)
-		print("incapacit", self.oid)
 	end,
 	
 	respawn = function (self)

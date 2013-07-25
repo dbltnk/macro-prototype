@@ -4,7 +4,8 @@ Clan = Sprite:extend
 {
 	class = "Clan",
 
-	props = {"name", "color"},
+	props = {"name", "color", "status"},
+	sync_high = {"status"},
 	
 	width = 1,
 	height = 1,
@@ -13,6 +14,7 @@ Clan = Sprite:extend
 	name = "",
 	hometown = nil,
 	color = {},
+	status = "hostile",
 	
 	onNew = function (self)
 		self.x = -1000

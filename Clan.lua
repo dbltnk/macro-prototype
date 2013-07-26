@@ -4,8 +4,8 @@ Clan = Sprite:extend
 {
 	class = "Clan",
 
-	props = {"name", "color", "status"},
-	sync_high = {"status"},
+	props = {"name", "color"},
+	sync_high = {},
 	
 	width = 1,
 	height = 1,
@@ -14,7 +14,6 @@ Clan = Sprite:extend
 	name = "",
 	hometown = nil,
 	color = {},
-	status = "hostile",
 	
 	onNew = function (self)
 		self.x = -1000
@@ -22,7 +21,7 @@ Clan = Sprite:extend
 		self.visible = false
 		self:mixin(GameObject)
 		the.app.view.layers.management:add(self)
-		the.clans[self] = true
+		the.clans[self] = "allied"
 		self.name = localconfig.team 
 		self.color = {math.random(0,255),math.random(0,255),math.random(0,255)}
 		local homeX, homeY = math.random(200,800), math.random(200,800)

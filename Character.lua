@@ -381,14 +381,12 @@ Character = Tile:extend
 			local otherClan = object_manager.first_where(function(oid,o) 
 				return o.class == "Clan" and o.name == other.clan
 			end)
-			if otherClan and other.clan ~= self.clan and self.dead == false and other.dead == false and otherClan.status ~= "allied" then	
+			if otherClan and other.clan ~= self.clan and self.dead == false and other.dead == false and the.clans[otherClan] ~= "allied" then	
 				local dmg = config.combatDMG * (self.skillLevel + self.XPLevel + self.equipLevel) * self.elapsed
 				-- dish out damage to the other character
 				object_manager.send(other.oid, "damage", dmg, self.oid)
 				-- give myself some combatSkill for fighting
 				if not other.dead then self:gainSkill(config.combatSkillGain * self.elapsed) end
-							print(otherClan.status)
-
 			end		
 			if other.clan == self.clan and self.dead == false and other.dead == false then
 				-- when with a friendly player assume we're training and gain some skill

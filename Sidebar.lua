@@ -59,12 +59,12 @@ Sidebar = Tile:extend
 				self["button" .. k.oid]:SetSize(256 / inputScale, buttonHeight / inputScale)
 				self["button" .. k.oid]:SetImage("assets/graphics/button_on.png")
 				self["button" .. k.oid].OnClick = function(object)
-					if k.status == "allied" then 
-						k.status = "hostile"
-					elseif k.status == "hostile" then 
-						k.status = "war" 
-					else
-						k.status = "allied" 
+					if the.clans[k] == "allied" then 
+						the.clans[k] = "hostile"
+					elseif the.clans[k] == "hostile" then 
+						the.clans[k] = "war" 
+					elseif the.clans[k] == "war" then 
+						the.clans[k] = "allied" 
 					end
 				end
 				self.clanButtonExists[k] = true
@@ -97,13 +97,13 @@ Sidebar = Tile:extend
 		end
 		for k, v in pairs(the.clans) do
 			if self["button" .. k.oid] then
-				local t = k.name .. " - " .. k.status
+				local t = k.name .. " - " .. the.clans[k]
                 self["button" .. k.oid]:SetText(t)            
-				if k.status == "hostile" then 
+				if the.clans[k] == "hostile" then 
 					self["button" .. k.oid]:SetImage("assets/graphics/button_hostile.png")  
-				elseif k.status == "allied" then 
+				elseif the.clans[k] == "allied" then 
 					self["button" .. k.oid]:SetImage("assets/graphics/button_allied.png")  
-				else
+				elseif the.clans[k] == "war" then 
 					self["button" .. k.oid]:SetImage("assets/graphics/button_war.png")  
 				end 
 				self["button" .. k.oid]:MoveToTop()

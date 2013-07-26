@@ -264,7 +264,7 @@ NameLevel = Text:extend
 {
 	font = 8,
 	text = "nixda",
-	width = 80,
+	width = 100,
 	skillLevel = 0,
 	XPLevel = 0,
 	equipLevel = 0,
@@ -275,7 +275,7 @@ NameLevel = Text:extend
 	onUpdate = function (self)
 		local aggregateLevel = utils.round(self.skillLevel + self.XPLevel + self.equipLevel,0)
 		if self.clan ~= the.clan.name then aggregateLevel = "?" end
-		self.text = self.name .. " (" .. self.clan .. ") [" .. aggregateLevel .. "]" 
+		self.text = self.name .. " [" .. aggregateLevel .. "]" 
 		--~ self.x = self.x - 20
 		--~ self.y = self.y - 30
 		--~ self:centerAround(self.x,self.y,"horizontal")

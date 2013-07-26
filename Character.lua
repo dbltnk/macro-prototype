@@ -206,7 +206,7 @@ Character = Tile:extend
 			x = self.x, y = self.y, 
 			skillLevel = self.skillLevel, XPLevel = self.XPLevel,
 			equipLevel = self.equipLevel, 
-			width = self.pain_bar_size *1.5, name = self.name, clan = self.clan
+			width = self.pain_bar_size *2, name = self.name, clan = self.clan
 		}
 		drawDebugWrapper(self)
 		

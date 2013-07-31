@@ -224,7 +224,12 @@ Character = Tile:extend
 	
 	move = function (self, elapsed)
 		local cx,cy = tools.object_center(self)
-		local dx,dy = vector.fromToWithLen(cx,cy, self.targetX,self.targetY, config.charSpeed * elapsed)
+		local dx,dy = 0,0
+		if self.currentPain >= self.maxPain / 20 then
+			dx,dy = vector.fromToWithLen(cx,cy, self.targetX,self.targetY, config.combatSpeed * elapsed)
+		else
+			dx,dy = vector.fromToWithLen(cx,cy, self.targetX,self.targetY, config.charSpeed * elapsed)
+		end
 		if math.floor(cx) ~= math.floor(self.targetX) then
 			if math.floor(cy) ~= math.floor(self.targetY) then
 				self.x, self.y = vector.add(self.x, self.y, dx,dy) 

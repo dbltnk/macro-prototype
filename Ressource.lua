@@ -29,7 +29,7 @@ Ressource = Tile:extend
 			x = self.x, y = self.y, 
 			dx = 0, dy = self.height,
 			currentValue = 0, maxValue = 100, inc = true,
-			width = self.pain_bar_size
+			width = self.width
 		}
 	end,
 	

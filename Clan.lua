@@ -24,7 +24,12 @@ Clan = Sprite:extend
 		the.clans[self] = "allied"
 		self.name = localconfig.team 
 		self.color = {math.random(0,255),math.random(0,255),math.random(0,255)}
-		local homeX, homeY = math.random(200,800), math.random(200,800)
+		local homeX, homeY = 512, 512
+		if math.random(1,100) >= 50 then
+			homeX, homeY = the.spawnpoint1.x, the.spawnpoint1.y
+		else
+			homeX, homeY = the.spawnpoint2.x, the.spawnpoint2.y		
+		end
 		if not self.created_via_network then		
 			self.testChar1 = Character:new{x= homeX + math.random(-50,50),y = homeY + math.random(-50,50), skillLevel = 2, XPLevel = 0, equipLevel = 0, loginTime = 16, logoutTime = 22, owner = network.client_id}
 			table.insert(self.members, self.testChar1)

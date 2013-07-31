@@ -315,6 +315,9 @@ GameView = View:extend
 		for character,_ in pairs(the.characters) do
 			self.impassable:subdisplace(character)	
 		end		
+		for treasure,_ in pairs(the.treasures) do
+			self.impassable:subdisplace(treasure)	
+		end	
 		--~ 
 		--~ profile.stop()
 		--~ 
